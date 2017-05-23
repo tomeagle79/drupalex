@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Our Products</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="dist/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="dist/css/styles.css">
+</head>
+</head>
+<body>
+	<header>
+		<a class="logo" href=""><img src="images/anchor-logo.png" alt=""></a>
+		<div class="logo-bg"></div>
+		<div class="header-wrap">
+			<nav>
+				<ul>
+					<li class="nav-home"><a href="#">Home</a></li>
+					<li><a href="#">Our Story</a></li>
+					<li><a href="#">Products</a></li>
+					<li class="right"><a href="#">Prize draw</a></li>
+					<li class="right"><a href="#">Our News</a></li>
+				</ul>
+			</nav>
+			<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+			</ul>
+		</div>
+		<span class="mob-nav">Menu</span>
+	</header>
+	<main>
+		<section class="sub-header">
+			<div class="sub-header-inner">
+				<h1>FAQs</h1>
+				<a href=""><img src="images/products-header.jpg" alt=""></a>
+			</div>
+			<img src="images/white-curve.svg" alt="">
+		</section>
+		<div class="content-wrap">
+            <section class="faq-wrapper">           
+                <div class="accordion">
+                        <div class="accord-header">What do I get for my code?<span></span></div>
+                        <div class="accord-content">
+                            <p>You can use one code at a time to either enter prize draws, download good stuff or claim discounted offers.</p>
+                        </div> 
+                        <div class="accord-header">Lorem magna, quis dolores pariatur curabitur, vitae lobortis facilisi? Ducimus tempus iaculis.<span></span></div>
+                        <div class="accord-content">
+                            <p>Ipsa nibh dignissim ac feugiat nostra. Excepturi sapiente mi aliquid! Quos ultricies, magnam ea. Tenetur, litora vestibulum nobis. Quae blanditiis. Natus tempus diam eu omnis ullamcorper iste, dui asperiores excepturi.</p>
+                        </div> 
+                        <div class="accord-header">Earum doloremque, ante nam, illo, placerat sodales a urna ligula habitant pretium hendrerit praesentium sodales sapien, inventore ipsa occaecat sagittis. Bibendum lacinia. Debitis accumsan, natoque, aptent euismod lacus, platea.<span></span></div>
+                        <div class="accord-content">
+                            <p>Ipsa nibh dignissim ac feugiat nostra. Excepturi sapiente mi aliquid! Quos ultricies, magnam ea. Tenetur, litora vestibulum nobis. Quae blanditiis. Natus tempus diam eu omnis ullamcorper iste, dui asperiores excepturi.</p>
+                        </div> 
+                        <div class="accord-header">Labore repellat fringilla felis?<span></span></div>
+                        <div class="accord-content">
+                            <p>Ipsa nibh dignissim ac feugiat nostra. Excepturi sapiente mi aliquid! Quos ultricies, magnam ea. Tenetur, litora vestibulum nobis. Quae blanditiis. Natus tempus diam eu omnis ullamcorper iste, dui asperiores excepturi.</p>
+                        </div>                    
+                </div>
+                <div data-stellar-background-ratio="1.5" class="parallax-all" id="parallax-yellow"></div>
+            </section>
+		</div>
+	</main>
+	<footer>
+		<img class="footer-top" src="images/footer-top.svg" alt="">
+		<div class="footer-in">
+			<img src="images/the-good-stuff.png" alt="" class="footer-good-stuff">
+			<div class="footer-content">
+				<p>Lorem ipsum door sit amet &copy;2017</p>
+				<ul class="footer-nav">
+					<li><a href="">Cookie Policy</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Terms &amp; Conditions</a></li>
+					<li><a href="">FAQs</a></li>
+					<li class="last"><a href="">Contact us</a></li>
+				</ul>
+				<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<div class="codes-fixed"><a href="">You can still use your good stuff hub codes here</a><span></span></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+    <script>//Accordion
+        $(document).ready(function() {
+            $(".accordion .accord-header").click(function() {
+              if($(this).next("div").is(":visible")){
+                $(this).next("div").slideUp("fast");
+                $(this).removeClass("active");
+              } else {
+                $(".accordion .accord-content").slideUp("fast");
+                $(this).next("div").slideToggle("fast");
+                $(this).addClass("active").siblings().removeClass("active");;
+              }
+            });
+        });
+    </script>
+</body>
+</html>
