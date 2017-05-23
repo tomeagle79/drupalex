@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HEADER" transform="translate(-910.000000, -104.000000)">
+            <g id="social">
+                <g transform="translate(910.000000, 104.000000)">
+                    <g id="Group-2">
+                        <circle id="Oval-Copy-2" fill="#2292CC" cx="12" cy="12" r="12"></circle>
+                        <path d="M15,5.09722222 C14.78125,5.06481481 14.0277778,5 13.1527778,5 C11.3217593,5 10.0659722,6.11805556 10.0659722,8.16782407 L10.0659722,9.93402778 L8,9.93402778 L8,12.3321759 L10.0659722,12.3321759 L10.0659722,18.4814815 L12.5451389,18.4814815 L12.5451389,12.3321759 L14.6030093,12.3321759 L14.9189815,9.93402778 L12.5451389,9.93402778 L12.5451389,8.40277778 C12.5451389,7.71412037 12.7314815,7.23611111 13.7280093,7.23611111 L15,7.23611111 L15,5.09722222 Z" id="facebook---FontAwesome" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
