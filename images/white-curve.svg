@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="43px" viewBox="0 0 1024 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>white-curve</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="layout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="products" transform="translate(0.000000, -270.000000)" fill="#FFFFFF">
+            <g id="hero" transform="translate(0.000000, 67.000000)">
+                <g id="white-curve" transform="translate(-1.000000, 203.000000)">
+                    <path d="M1025,36.5 C1025,36.5 815.078125,-5.68434189e-14 513,0 C210.921875,5.68434189e-14 1,36.5 1,36.5 L1,43 L1025,43 L1025,36.5 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -79,15 +79,27 @@ h3{
 	text-transform: uppercase;
 	color: $black;
 }
+h4{
+	margin-top: 0;
+	@include font-size(22px);
+	text-transform: uppercase;
+	color: $black;
+}
 
 p{
 	margin-top:0;
 	font-family: 'gbk';
+	color:#545454;
 }
 
 a{
 	text-decoration: none;
 	color: $red;
+}
+ul{
+	li{	
+		color:#545454
+	}
 }
 
 .button{
@@ -347,6 +359,120 @@ header{
 	}
 }
 
+
+
+.sub-header{
+	position: relative;
+	>img{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 15;
+		left:0;
+	}
+}
+
+.sub-header-inner{
+	overflow: hidden;
+	h1{
+		position: absolute;
+		left: 50%;
+		top:50%;
+		transform: translate(-50%,-50%);
+		@include font-size(34px);
+		color: #FFFFFF;
+		text-shadow: 1px 2px 3px #434343;
+		text-align:center;
+
+		@media (min-width:640px){
+			@include font-size(46px);
+		}
+		@media (min-width:1024px){
+			@include font-size(64px);
+
+		}
+	}
+	img{
+		width:100%;
+	}
+}
+.content-wrap{
+	max-width:980px;
+	margin:0em 5% 2em 5%;
+	@media (min-width:640px){
+		margin:0 auto 2em auto;
+	}
+	h2{
+		text-align:center;
+	}
+}
+ul.filter-nav{
+	border-bottom: 2px solid #E8E8E8;
+	margin: 0 auto 2em auto;
+	padding: 0;
+	display: table;
+	width: auto;
+	text-align: center;
+	@include clearfix();
+	li{
+		display:inline;
+		text-decoration:none;
+		margin: 1em 0em;
+		a{
+			color:#B9B9B9;	
+			text-transform: uppercase;
+			padding:1em 2em;
+			margin: 0;
+    			display: inline-block;
+			&:hover{
+				color:$red;
+			}
+		}
+	}
+}
+.products-wrap{
+	@include clearfix();
+	.product{
+		text-align:center;
+		margin:0 0 3em 0;
+		border-bottom:solid 5px #E8E8E8;
+		padding:0 0 1em 0;
+		@media (min-width:640px){
+			width:46%;
+			margin:0 2% 2em 2%;
+			padding:0 0 2em 0;
+			float:left;
+		}
+		img{
+			width:100%;
+			margin:0 0 1em 0;
+		}
+	}
+}
+.left{
+	.product{
+		text-align:center;
+		margin:0 0 1em 0;
+		padding:0;
+		border-bottom:none;
+		img{
+			width:100%;
+		}
+	}
+}
+.right{
+	.product-details{
+		margin:0 0 2em 0;
+		ul{
+			padding:0;
+			margin:0 0 2em 0;
+			li{
+				font-family: 'gbk';
+				list-style-type: none;
+			}
+		}
+	}
+}
 footer{
 	background:$dark-red;
 	@include font-size(14px);
