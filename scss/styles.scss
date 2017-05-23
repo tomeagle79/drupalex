@@ -750,6 +750,11 @@ ul.filter-nav{
 }
 
 // WIN
+.win-intro{
+	max-width:700px;
+	margin:0 auto 2em auto;
+	padding:0px!important;
+}
 .form-outer{
 	padding: 2em 5%;
 	@media screen and (min-width: $tab){
@@ -819,6 +824,7 @@ form{
 			display: block;
 			margin: 1em auto 1.4em auto;
 			float: none;
+			text-align: center;
 		}
 	}
 	.label-wrap.terms-wrap{
