@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Our Products</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="dist/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="dist/css/styles.css">
+</head>
+</head>
+<body>
+	<header>
+		<a class="logo" href=""><img src="images/anchor-logo.png" alt=""></a>
+		<div class="logo-bg"></div>
+		<div class="header-wrap">
+			<nav>
+				<ul>
+					<li class="nav-home"><a href="#">Home</a></li>
+					<li><a href="#">Our Story</a></li>
+					<li><a href="#">Products</a></li>
+					<li class="right"><a href="#">Prize draw</a></li>
+					<li class="right"><a href="#">Our News</a></li>
+				</ul>
+			</nav>
+			<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+			</ul>
+		</div>
+		<span class="mob-nav">Menu</span>
+	</header>
+	<main>
+		<section class="sub-header">
+			<div class="sub-header-inner">
+				<h1>NEWS</h1>
+				<a href=""><img src="images/products-header.jpg" alt=""></a>
+			</div>
+			<img src="images/white-curve.svg" alt="">
+		</section>
+		<div class="content-wrap">
+			<div class="news masonry">
+                <div class="news-teaser three-masonry">
+                	<div class="news-teaser-in">
+                		<a href=""><h3>Pure butter</h3></a>
+                    	<a href="">
+                    	    <img src="images/news-temp-1.jpg" alt="">
+                    	</a>
+                    	<p>Simple and real butter with no artificial ingredients. Great for cooking and baking.</p>
+                    	<a class="button" href="">Read the full post</a>
+                    </div>
+                </div>
+                
+                <div class="news-teaser three-masonry">
+                	<div class="news-teaser-in">
+                		<a href=""><h3>Pure butter</h3></a>
+                    	<a href="">
+                    	    <img src="images/news-temp-2.jpg" alt="">
+                    	</a>
+                    	<p>Simple and real butter with no artificial ingredients. Great for cooking and baking.</p>
+                    	<a class="button" href="">Read the full post</a>
+                    </div>
+                </div>
+                <div class="news-teaser three-masonry">
+                	<div class="news-teaser-in">
+                		<a href=""><h3>Pure butter</h3></a>
+                    	<a href="">
+                    	    <img src="images/news-temp-3.jpg" alt="">
+                    	</a>
+                    	<p>Simple and real butter with no artificial ingredients. Great for cooking and baking.</p>
+                    	<a class="button" href="">Read the full post</a>
+                    </div>
+                </div>
+                <div class="news-teaser three-masonry">
+                	<div class="news-teaser-in">
+                		<a href=""><h3>Pure butter</h3></a>
+                    	<a href="">
+                    	    <img src="images/news-temp-1.jpg" alt="">
+                    	</a>
+                    	<p>Simple and real butter with no artificial ingredients. Great for cooking and baking.</p>
+                    	<a class="button" href="">Read the full post</a>
+                    </div>
+                </div>
+                <div class="news-teaser three-masonry">
+                	<div class="news-teaser-in">
+                		<a href=""><h3>Pure butter</h3></a>
+                    	<a href="">
+                    	    <img src="images/news-temp-2.jpg" alt="">
+                    	</a>
+                    	<p>Simple and real butter with no artificial ingredients. Great for cooking and baking.</p>
+                    	<a class="button" href="">Read the full post</a>
+                    </div>
+                </div>
+                <div class="news-teaser three-masonry">
+                	<div class="news-teaser-in">
+                		<a href=""><h3>Pure butter</h3></a>
+                    	<a href="">
+                    	    <img src="images/news-temp-3.jpg" alt="">
+                    	</a>
+                    	<p>Simple and real butter with no artificial ingredients. Great for cooking and baking.</p>
+                    	<a class="button" href="">Read the full post</a>
+                    </div>
+                </div>
+                <!-- Mandatory -->
+                <div class="three-masonry-sizer"></div>
+                <div class="three-masonry"></div>
+            </div>
+		</div>
+	</main>
+	<footer>
+		<img class="footer-top" src="images/footer-top.svg" alt="">
+		<div class="footer-in">
+			<img src="images/the-good-stuff.png" alt="" class="footer-good-stuff">
+			<div class="footer-content">
+				<p>Lorem ipsum door sit amet &copy;2017</p>
+				<ul class="footer-nav">
+					<li><a href="">Cookie Policy</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Terms &amp; Conditions</a></li>
+					<li><a href="">FAQs</a></li>
+					<li class="last"><a href="">Contact us</a></li>
+				</ul>
+				<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<div class="codes-fixed"><a href="">You can still use your good stuff hub codes here</a><span></span></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+    <script type="text/javascript" src="./dist/js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="./dist/js/masonry.pkgd.min.js"></script>
+    <script>
+    var $grid = $('.masonry').imagesLoaded( function() {
+        $grid.masonry({
+            // options
+        itemSelector: '.three-masonry',
+        // use element for option
+        columnWidth: '.three-masonry-sizer',
+        percentPosition: true
+        });
+    });
+    </script>
+</body>
+</html>
