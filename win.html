@@ -41,49 +41,59 @@
 				<h1>Win xxx</h1>
 				<a href=""><img src="images/win-header.jpg" alt=""></a>
 			</div>
-			<img src="images/white-curve.svg" alt="">
+			<img src="images/main-top-curve.png" alt="">
 		</section>
 		<section class="home main">
 			<div class="intro">
-				<h1>Hello, We're Anchor</h1>
-				<p>We make honest, British dairy, so you can trust it’s real. It’s simple… real dairy for real families.</p>
-			</div>
-			<div class="triptych">
-				<div>
-					<img src="images/trip-butter.png" alt="">
-					<a class="button" href="">View products</a>
-				</div>
-				<div>
-					<img src="images/trip-spread.png" alt="">
-					<a class="button" href="">View products</a>
-				</div>
-				<div>
-					<img src="images/trip-cream.png" alt="">
-					<a class="button" href="">View products</a>
+				<p class="regular-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+				<div class="timer">
+					<p>You have  <span><span class="days"></span> days </span>,  <span><span class="hours"></span> hrs </span>,  <span><span class="minutes"></span> minutes</span>, and <span><span class="seconds"></span> seconds</span> left to enter!</p>
 				</div>
 			</div>
-
-		</section><section>	
-			<div class="home-hub">
-				<img class="white-top" src="images/white-top.svg" alt="">
-				<img class="good-stuff-red" src="images/good-stuff-red.svg" alt="">
-				<img class="good-stuff" src="images/good-stuff-hub.png" alt="">
-				<div class="content">
-					<h3>Looking for the Good Stuff Hub?</h3>
-					<p>You’ve come to our new and improved site!<br>Use your remaining codes to enter our  exciting final prize draw.</p>
-					<div class="timer">
-						<p>You have  <span><span class="days"></span> days </span>,  <span><span class="hours"></span> hrs </span>,  <span><span class="minutes"></span> minutes</span>, and <span><span class="seconds"></span> seconds</span> left to enter!</p>
+			<div class="form-outer">
+				<div class="form-wrap">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+				<form action="">
+					<div class="label-wrap">
+						<label for="">First name</label>
+						<input type="text">
 					</div>
-				</div>
-				<a class="sign" href=""><span>Enter the final prize draw here</span><img src="images/sign.svg" alt="Click here to enter the final prize draw"></a>
+					<div class="label-wrap">
+						<label for="">Surname</label>
+						<input type="text">
+					</div>
+					<div class="label-wrap">
+						<label for="">Email</label>
+						<input type="email">
+					</div>
+					<div class="label-wrap">
+						<label for="">Phone</label>
+						<input type="tel">
+					</div>
+					<div style="clear:both"></div>
+					<hr>
+					<div class="label-wrap loyalty-code">
+						<label for="">Loylty code</label>
+						<input type="text">
+					</div>
+					<div style="clear:both"></div>
+					<hr>
+					<div style="clear:both"></div>
+					<div class="label-wrap terms-wrap">
+						<label for="" class="terms">I agree to the terms and conditions</label>
+						<input type="checkbox" class="terms-check">
+					</div>
+					<div class="label-wrap terms-wrap">
+						<label for="" class="terms">Please send me any further offers</label>
+						<input type="checkbox" class="terms-check">
+					</div>
+					<div style="clear:both"></div>
+					<hr>
+					<input type="submit" value="ENTER" class="button">	
+				</form>
 			</div>
-</section>
-		<section class="white tv">
-			<img class="white-top" src="images/white-top.svg" alt="">
-			<h2>Our latest TV ad</h2>
-			<div class="iframe-wrap">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/Ec7IjdtE0lg?showinfo=0" frameborder="0" allowfullscreen></iframe>
 			</div>
+			
 		</section>
 	</main>
 	<footer>
@@ -119,13 +129,5 @@
    			$('.seconds').html(event.strftime('%S'));
   		});
   	</script>
-	<script src="dist/js/owl.carousel.min.js"></script>
-	<script>
-		$('.owl-carousel').owlCarousel({
-    		loop:true,
-    		nav:true,
-    		items:1
-		});
-	</script>
 </body>
 </html>

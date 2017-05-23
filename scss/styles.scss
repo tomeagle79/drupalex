@@ -108,6 +108,9 @@ p{
 	font-family: 'gbk';
 	color:#545454;
 }
+p.regular-font{
+	font-family: 'gbk'!important;
+}
 
 a{
 	text-decoration: none;
@@ -548,17 +551,7 @@ header{
 		@media screen and (min-width: $desk){
 			text-align: center;
 		}
-		.timer{
-			p{
-				margin-bottom: 0;
-				@include font-size(20px);
-				font-family: "gblk";
-				color: $black;
-				span{
-					color: $red;
-				}
-			}
-		}
+
 	}
 	.sign{
 		@media screen and (min-width: $tab){
@@ -595,7 +588,17 @@ header{
     	}
 	}
 }
-
+.timer{
+	p{
+		margin-bottom: 0;
+		@include font-size(20px);
+		font-family: "gblk";
+		color: $black;
+		span{
+			color: $red;
+		}
+	}
+}
 .tv{
 	text-align: center;
 	margin-bottom: 5em;
@@ -663,6 +666,7 @@ header{
 
 	}
 }
+// PRODUCTS
 ul.filter-nav{
 	border-bottom: 2px solid #E8E8E8;
 	margin: 0 auto 2em auto;
@@ -745,6 +749,98 @@ ul.filter-nav{
 	}
 }
 
+// WIN
+.form-outer{
+	padding: 2em 5%;
+	@media screen and (min-width: $tab){
+		padding: 0;
+		width: 90%;
+		margin: 1em auto 5em auto;
+	}
+	@media screen and (max-width: $tab){
+		background: $green;
+	}
+}
+.form-wrap{
+	background:#fff;
+	max-width:675px;
+	margin:0 5%;
+	box-shadow: 0 0 4px 0 rgba(0,0,0,0.50);
+	border-radius: 6px;
+	padding:2em;
+	text-align:left;
+	@media (min-width:1024px){
+		margin:0 auto;	
+	}
+}
+form{
+	.label-wrap{
+		margin:0 0 1em 0;
+		label{
+			display:block;
+			text-transform: uppercase;
+			@include font-size(16px);
+			margin:0 0 0.4em 0;
+		}
+		label.terms{
+			@include font-size(14px);
+			font-family: 'gbk';
+			text-transform: none;
+			display:inline;
+		}
+		.terms-check{
+			width: auto;
+			padding: 0;
+			display: inline;
+		}
+		input{
+			display:block;
+			width:92%;
+			padding: 3% 4%;
+			border: solid 1px #A1A1A1;
+			@include font-size(18px);
+		}
+		@media (min-width:648px){
+			width:48%;
+			float:left;
+			margin:0 2% 1em 0;
+		}
+	}
+	.label-wrap:nth-child(2),
+	.label-wrap:nth-child(4){
+		@media (min-width:648px){
+			width:48%;
+			float:right;
+			margin:0 0 1em 2%;
+		}
+	}
+	.label-wrap.loyalty-code{
+		@media (min-width:648px){
+			display: block;
+			margin: 1em auto 1.5em auto;
+			float: none;
+		}
+	}
+	.label-wrap.terms-wrap{
+		margin:0.5em 0;
+	}
+	input.button{
+		border:none;
+		width:100%;
+		@media (min-width:648px){
+			width: 250px;
+		    margin: 1.5em auto 0 auto;
+		    text-align: center;
+		    display: block;
+		}
+	}
+	textarea:focus, input:focus{
+	    outline: none;
+	    background:#F8DA6C;
+	    border: solid 1px #F8DA6C;
+	}
+}
+
 
 // FAQs
 
@@ -761,7 +857,13 @@ ul.filter-nav{
         width:50em;
     }
 }
-
+hr{
+	border: none;
+	height: 1px;
+	/* Set the hr color */
+	color: #D8D8D8; /* old IE */
+	background-color: #D8D8D8; /* Modern Browsers */
+}
 .accord-header{
     cursor: pointer;
     position: relative;
