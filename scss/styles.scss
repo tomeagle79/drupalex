@@ -1027,13 +1027,16 @@ hr{
 	@media (min-width: $tab ){
 		display: flex;
 		float:left;
+		@include clearfix();
+		background:#ffffff;
 	}
 	img{
 		width: 100%;
 		height: auto;
 		border-radius: 5px 5px 0 0;
 		@media (min-width: $tab ){
-			width: auto;
+			width: 48%;
+			float:left;
 			flex-grow: 1;
 			flex-basis: auto;
 			border-radius: 5px 0 0 5px;
@@ -1046,7 +1049,8 @@ hr{
 		height: auto;
 		display: block;
     	@media (min-width: $tab ){
-			width: 50%;
+			width: 41%;
+			float:right;
 			padding: 2em 2em 1em 2em;
 			border-radius: 0 5px 5px 0;
 			flex-grow: 1;
