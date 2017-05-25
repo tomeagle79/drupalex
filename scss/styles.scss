@@ -528,7 +528,8 @@ header{
 			display: none
 		}
 	}
-	.good-stuff, .good-stuff-red{
+	.good-stuff, 
+	.good-stuff-red{
 		display: none;
 		@media screen and (min-width: $tab){
 			display: block;
@@ -695,7 +696,7 @@ ul.filter-nav{
 		display:inline;
 		text-decoration:none;
 		margin: 1em 0em;
-		background:none;
+		background:none!important;
 		a{
 			color:#B9B9B9;	
 			text-transform: uppercase;
@@ -1142,8 +1143,8 @@ footer{
 	span{
 		content:'';
 		display: block;
-		width: 14px;
-		height: 14px;
+		width: 34px;
+		height: 34px;
 		background:url(../../images/icon-x.svg) no-repeat;
 		position: absolute;
 		right: 20px;
