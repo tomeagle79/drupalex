@@ -419,9 +419,10 @@ header{
     	@include font-size(26px);
     	width: 90%;
     	margin: 0 auto;
-		@media screen and (min-width: $tab){	
-			width: 70%;
-		}
+
+	@media screen and (min-width: $tab){	
+		width: 70%;
+	}
     }
     .intro{
     	display: inline-block;
@@ -434,8 +435,13 @@ header{
     	}
 		p{
 			font-family: "gblk";
-    		@include font-size(20px);
+    			@include font-size(20px);
+    			    	@media screen and (max-width: $tab){	
+    			
+    					margin: 1em 5%;
+    				}
 		}
+
     }
 }
 
