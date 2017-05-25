@@ -1024,9 +1024,10 @@ hr{
 
 .story-block{
 	margin-bottom: 2em;
-    @media (min-width: $tab ){
+	@media (min-width: $tab ){
 		display: flex;
-    }
+		float:left;
+	}
 	img{
 		width: 100%;
 		height: auto;
