@@ -573,7 +573,7 @@ header{
 	}
 	.sign{
 		@media screen and (min-width: $tab){
-			position: absolute;
+		position: absolute;
  	    	right: 1%;
     		bottom: 0;
     		width: 20%;
@@ -584,17 +584,17 @@ header{
 		}		
     	span{
     		display:block;
-			background: $red;
-			color: white;
-			display: inline-block;
-			width: auto;
-			border-radius: 3em;
-			padding: 0.8em 1em;
-			text-transform: uppercase;
-			text-shadow: 0 1px 0 rgba(0,0,0,0.28);
-			@include font-size(16px);
-			@media screen and (min-width: $tab){
-				display: none;
+		background: $red;
+		color: white;
+		display: inline-block;
+		width: auto;
+		border-radius: 3em;
+		padding: 0.8em 1em;
+		text-transform: uppercase;
+		text-shadow: 0 1px 0 rgba(0,0,0,0.28);
+		@include font-size(15px);
+		@media screen and (min-width: $tab){
+			display: none;
     		}
     	}
     	img{
