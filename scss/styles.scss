@@ -155,7 +155,7 @@ img.white-top{
 		display: block;
 		position: absolute;
 		left: 0;
-		bottom:100%;
+		bottom:109%;
 		width: 100%;			
 	}
 }
@@ -507,23 +507,16 @@ header{
 
 .home-hub{
 	position: relative;
-	background: white;
 	box-shadow: 0 10px 12px 0 rgba(193,193,193,0.50);
 	padding-bottom: 2em;
 	margin-bottom: 2em;
 	padding-left: 5%;
 	padding-right: 5%;
 	text-align:center;
-	@media screen and (min-width: $tab){
-		padding: 1em 0;
-	}
-	@media screen and (min-width: $desk){
-		box-shadow: none;
-		background: #648D3E;
-		box-shadow: none;
-		margin-bottom: 0;
-		padding-bottom: 4em;
-	}
+	padding: 1em 5%;
+	background: #648D3E;
+	box-shadow: none;
+	padding-bottom: 4em;
 	img.white-top{
 		display: block;
 		position: absolute;
@@ -547,24 +540,24 @@ header{
 	}
 	.good-stuff{
 		display: none;
-		@media screen and (min-width: $desk){
-			display: block;
-		}
-	}
-	.good-stuff-red{
-		display: none;
 		@media screen and (min-width: $tab){
 			display: block;
 		}
-		@media screen and (min-width: $desk){
-			display: none;
-		}
 	}
+	// .good-stuff-red{
+	// 	display: none;
+	// 	@media screen and (min-width: $tab){
+	// 		display: block;
+	// 	}
+	// 	@media screen and (min-width: $desk){
+	// 		display: none;
+	// 	}
+	// }
 	.content{
 		text-align: center;
 		background: white;
 		margin: 0 auto;
-		padding: 1em 0;
+		padding: 1em;
 		border-radius: 6px;
 		@media screen and (min-width: $tab){
 			width: 60%;
@@ -597,6 +590,7 @@ header{
 		padding: 0.8em 1em;
 		text-transform: uppercase;
 		text-shadow: 0 1px 0 rgba(0,0,0,0.28);
+		margin:2em 0 0 0;
 		@include font-size(15px);
 		@media screen and (min-width: $tab){
 			display: none;
@@ -608,7 +602,7 @@ header{
 				display: block;
 				width: 100%;
 			}
-    	}
+    		}
 	}
 }
 .timer{
@@ -649,6 +643,7 @@ header{
 
 .sub-header-inner{
 	overflow: hidden;
+	max-height:400px;
 	h1{
 		position: absolute;
 		left: 50%;
