@@ -1047,6 +1047,7 @@ hr{
 		float:left;
 		@include clearfix();
 		background:#ffffff;
+		border-radius:5px;
 	}
 	img{
 		width: 100%;
