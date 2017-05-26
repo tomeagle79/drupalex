@@ -419,6 +419,7 @@ header{
     text-align: center;
     padding-bottom: 0;
     position:relative;
+        overflow: hidden;
 	@media screen and (min-width: $desk){
 		padding-bottom: 3em;
 		overflow: hidden;
