@@ -421,6 +421,7 @@ header{
     position:relative;
 	@media screen and (min-width: $desk){
 		padding-bottom: 3em;
+		overflow: hidden;
 	}
     > p{
     	@include font-size(26px);
@@ -1200,7 +1201,7 @@ footer{
 
 #clouds{
 	display:none;
-	@media (min-width: 1024px ){
+	@media (min-width: 640px ){
 		display:block;
 		position:absolute;
 		top:120px;
