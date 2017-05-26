@@ -538,6 +538,9 @@ header{
 	background: #648D3E;
 	box-shadow: none;
 	padding-bottom: 4em;
+	@media screen and (min-width: $desk){
+		padding-bottom: 6em;
+	}
 	img.white-top{
 		display: block;
 		position: absolute;
