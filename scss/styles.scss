@@ -1223,24 +1223,24 @@ footer{
 
 /*variable speed, opacity, and position of clouds for realistic effect*/
 .x2 {
-	left: -250px; 
+	left: 450px; 
 	top: -110px;
 	
-	-webkit-animation: moveclouds 42s linear infinite;
-	-moz-animation: moveclouds 42s linear infinite;
-	-o-animation: moveclouds 42s linear infinite;
+	-webkit-animation: moveclouds 40s linear infinite;
+	-moz-animation: moveclouds 40s linear infinite;
+	-o-animation: moveclouds 40s linear infinite;
 	background:url(../../images/cloud1.png) no-repeat;
 	height:50px;
 	width:91px;
 }
 
 .x3 {
-	left: -250px; 
+	left: 250px; 
 	top: -100px;
 	
-	-webkit-animation: moveclouds 58s linear infinite;
-	-moz-animation: moveclouds 58s linear infinite;
-	-o-animation: moveclouds 58s linear infinite;
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
 	background:url(../../images/cloud1.png) no-repeat;
 	height:50px;
 	width:91px;
@@ -1250,9 +1250,9 @@ footer{
 	left: 0px; 
 	top: -100px;
 	
-	-webkit-animation: moveclouds 48s linear infinite;
-	-moz-animation: moveclouds 48s linear infinite;
-	-o-animation: moveclouds 48s linear infinite;
+	-webkit-animation: moveclouds 28s linear infinite;
+	-moz-animation: moveclouds 28s linear infinite;
+	-o-animation: moveclouds 28s linear infinite;
 
 	background:url(../../images/cloud2.png) no-repeat;
 	height:66px;
