@@ -1194,8 +1194,13 @@ footer{
 /* CLOUDS */
 
 #clouds{
-	position:absolute;
-	top:120px;
+	display:none;
+	@media (min-width: 1024px ){
+		display:block;
+		position:absolute;
+		top:120px;
+	}
+
 }
 .cloud {
 	
