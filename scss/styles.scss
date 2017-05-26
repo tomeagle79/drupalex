@@ -472,7 +472,7 @@ header{
 		padding: 0;
 		width: 90%;
 		max-width: 1200px;
-		margin: 5% auto 4em auto;
+		margin: 5% auto 3em auto;
 	}
 	@media screen and (max-width: $tab){
 		background: $green;
@@ -509,7 +509,20 @@ header{
 		left: 50%;
 		margin-left: -35%;
 		padding: 0.8em 0;
-		width: 70%
+		width: 70%;
+		@media screen and (min-width: $tab){
+			left: 45%;
+			margin-left: -40%;
+			padding: 0.8em 0;
+			width: 90%;
+
+		}
+		@media screen and (min-width: $desk){
+			left: 50%;
+			margin-left: -35%;
+			padding: 0.8em 0;
+			width: 70%;
+		}
 	}
 }
 
@@ -1164,7 +1177,7 @@ footer{
 	left:0;
 	bottom:0;
 	width:100%;
-	z-index: 5;
+	z-index: 150;
 	span{
 		content:'';
 		display: block;
@@ -1237,6 +1250,12 @@ footer{
 .x3 {
 	left: 250px; 
 	top: -100px;
+	@media (min-width: $tab ){
+		top: -150px;
+	}
+	@media (min-width: $desk ){
+		top: -100px;
+	}
 	
 	-webkit-animation: moveclouds 20s linear infinite;
 	-moz-animation: moveclouds 20s linear infinite;
@@ -1249,6 +1268,13 @@ footer{
 .x4 {
 	left: 0px; 
 	top: -100px;
+
+	@media (min-width: $tab ){
+		top: -150px;
+	}
+	@media (min-width: $desk ){
+		top: -100px;
+	}
 	
 	-webkit-animation: moveclouds 28s linear infinite;
 	-moz-animation: moveclouds 28s linear infinite;
