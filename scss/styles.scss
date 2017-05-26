@@ -436,11 +436,12 @@ header{
 	padding: 2em;
 	z-index: 100;
 	position: relative;
+	background: $cream;
 	@media screen and (min-width: $tab){
-		display: block;
+		display: block;background: none;
 	}
 	@media screen and (max-width: $tab){
-		background: $cream;
+		
     	}
 	p{
 		font-family: "gblk";
@@ -770,8 +771,11 @@ ul.filter-nav{
 // WIN
 .win-intro{
 	max-width:720px;
-	margin:0 auto 2em auto;
+	margin:0 auto 0 auto;
 	padding:0px!important;
+	@media screen and (min-width: $tab){
+		margin:0 auto 2em auto;
+	}
 	p{
 		max-width: 720px!important;
 	}
