@@ -68,6 +68,7 @@ body{
 	//max-width: 1400px;
   	font-family: 'gblk';
   	@include font-size(18px);
+  	overflow-x: hidden;
 }
 
 h1{
@@ -121,6 +122,11 @@ ul{
 		color:#545454
 	}
 }
+a{
+	img{
+		border:0;
+	}
+}
 
 .button{
 	background: $red;
@@ -150,7 +156,7 @@ img.white-top{
 		display: block;
 		position: absolute;
 		left: 0;
-		bottom:100%;
+		bottom:109%;
 		width: 100%;			
 	}
 }
@@ -171,11 +177,11 @@ header{
 		top: 28px;
 		color: $red;
 		text-transform: uppercase;
-		background:url(../images/icon-lines.svg) no-repeat right top;
+		background:url(../../images/icon-lines.svg) no-repeat right top;
 		padding-right: 0.75em;
 		cursor: pointer;
 		&.active{
-			background:url(../images/icon-close.svg) no-repeat right top;
+			background:url(../../images/icon-close.svg) no-repeat right top;
 		}
 	}
 	.logo{
@@ -328,7 +334,7 @@ header{
 	.owl-prev{
 		left: -50px;
 		border-radius: 0 100px 100px 0;
-		background: url(../images/arrow-l.svg) white no-repeat;
+		background: url(../../images/arrow-l.svg) white no-repeat;
 		background-position: 75% 50%;
 		&:hover{
 			left: -25px;
@@ -337,7 +343,7 @@ header{
 	.owl-next{
 		right: -50px;
 		border-radius: 100px 0 0 100px;
-		background: url(../images/arrow-r.svg) white no-repeat;
+		background: url(../../images/arrow-r.svg) white no-repeat;
 		background-position: 25% 50%;
 		&:hover{
 			right: -25px;
@@ -382,19 +388,19 @@ header{
 	}
 	.facebook{
 		a{
-			background: url(../images/icon-facebook.svg) no-repeat;
+			background: url(../../images/icon-facebook.svg) no-repeat;
 			background-size: 100%;
 		}
 	}
 	.twitter{
 		a{
-			background: url(../images/icon-twitter.svg) no-repeat;
+			background: url(../../images/icon-twitter.svg) no-repeat;
 			background-size: 100%;
 		}
 	}
 	.youtube{
 		a{
-			background: url(../images/icon-youtube.svg) no-repeat;
+			background: url(../../images/icon-youtube.svg) no-repeat;
 			background-size: 100%;
 		}
 	}
@@ -403,7 +409,7 @@ header{
 .main{
 	@include clearfix();
 	@media screen and (min-width: $tab){
-		background: url(../images/main-bg-no-curve.jpg) #648D3E no-repeat;
+		background: url(../../images/main-bg-no-curve.jpg) #648D3E no-repeat;
 		background-size: 100% auto;
 	}
 }
@@ -412,46 +418,67 @@ header{
     width: 100%;
     text-align: center;
     padding-bottom: 0;
+    position:relative;
+        overflow: hidden;
 	@media screen and (min-width: $desk){
 		padding-bottom: 3em;
+		overflow: hidden;
 	}
     > p{
     	@include font-size(26px);
     	width: 90%;
     	margin: 0 auto;
-		@media screen and (min-width: $tab){	
-			width: 70%;
-		}
+
+	@media screen and (min-width: $tab){	
+		width: 70%;
+	}
     }
     .intro{
-    	display: inline-block;
-    	padding: 2em;
-		@media screen and (min-width: $tab){
-			display: block;
-		}
-		@media screen and (max-width: $tab){
-    		background: $cream;
+	display: inline-block;
+	padding: 2em;
+	z-index: 100;
+	position: relative;
+	background: $cream;
+	@media screen and (min-width: $tab){
+		display: block;background: none;
+	}
+	@media screen and (max-width: $tab){
+		
     	}
-		p{
-			font-family: "gblk";
-    		@include font-size(20px);
+	p{
+		font-family: "gblk";
+		@include font-size(20px);
+		max-width: 700px;
+		margin: 0 auto;
+	    	@media screen and (max-width: 640px){	
+			margin: 1em 5%;
 		}
+		
+	}
+	h1{
+		margin:0 0 0.2em 0;
+	}
+
     }
 }
 
 
 .triptych{
 	padding: 2em 5%;
+	@include clearfix();
 	@media screen and (min-width: $tab){	
 		display: flex;
 		flex-direction: row;
 		padding: 0;
 		width: 90%;
 		max-width: 1200px;
-		margin: 15% auto 5em auto;
+		margin: 5% auto 3em auto;
 	}
 	@media screen and (max-width: $tab){
 		background: $green;
+	}
+	@media screen and (min-width: $desk){
+		margin: 10% auto 2em auto;
 	}
 	> div{
 		background: white;
@@ -461,10 +488,13 @@ header{
 		text-align: center;
 		padding: 1em 0 2em 0; 
 		margin-bottom: 3em;
+		/*POSS IE FLOAT FIX */
+		// float:left;
 		@media screen and (min-width: $tab){
 			flex-grow: 1;
 			width: 30.5%;
 			margin: 0 1%;
+			float:left;
 		}
 		img{
 			display: inline-block;
@@ -479,28 +509,37 @@ header{
 		left: 50%;
 		margin-left: -35%;
 		padding: 0.8em 0;
-		width: 70%
+		width: 70%;
+		@media screen and (min-width: $tab){
+			left: 45%;
+			margin-left: -40%;
+			padding: 0.8em 0;
+			width: 90%;
+
+		}
+		@media screen and (min-width: $desk){
+			left: 50%;
+			margin-left: -35%;
+			padding: 0.8em 0;
+			width: 70%;
+		}
 	}
 }
 
 .home-hub{
 	position: relative;
-	background: white;
 	box-shadow: 0 10px 12px 0 rgba(193,193,193,0.50);
 	padding-bottom: 2em;
 	margin-bottom: 2em;
 	padding-left: 5%;
 	padding-right: 5%;
 	text-align:center;
-	@media screen and (min-width: $tab){
-		padding: 1em 0;
-	}
+	padding: 1em 5%;
+	background: #648D3E;
+	box-shadow: none;
+	padding-bottom: 4em;
 	@media screen and (min-width: $desk){
-		box-shadow: none;
-		background: #648D3E;
-		box-shadow: none;
-		margin-bottom: 0;
-		padding-bottom: 4em;
+		padding-bottom: 6em;
 	}
 	img.white-top{
 		display: block;
@@ -512,7 +551,8 @@ header{
 			display: none
 		}
 	}
-	.good-stuff, .good-stuff-red{
+	.good-stuff, 
+	.good-stuff-red{
 		display: none;
 		@media screen and (min-width: $tab){
 			display: block;
@@ -524,29 +564,28 @@ header{
 	}
 	.good-stuff{
 		display: none;
-		@media screen and (min-width: $desk){
-			display: block;
-		}
-	}
-	.good-stuff-red{
-		display: none;
 		@media screen and (min-width: $tab){
 			display: block;
 		}
-		@media screen and (min-width: $desk){
-			display: none;
-		}
 	}
+	// .good-stuff-red{
+	// 	display: none;
+	// 	@media screen and (min-width: $tab){
+	// 		display: block;
+	// 	}
+	// 	@media screen and (min-width: $desk){
+	// 		display: none;
+	// 	}
+	// }
 	.content{
 		text-align: center;
 		background: white;
 		margin: 0 auto;
-		padding: 1em 0;
+		padding: 1em;
 		border-radius: 6px;
 		@media screen and (min-width: $tab){
 			width: 60%;
-			padding: 1em;	
-			text-align: left;		
+			padding: 1em;			
 		}
 		@media screen and (min-width: $desk){
 			text-align: center;
@@ -555,7 +594,7 @@ header{
 	}
 	.sign{
 		@media screen and (min-width: $tab){
-			position: absolute;
+		position: absolute;
  	    	right: 1%;
     		bottom: 0;
     		width: 20%;
@@ -566,17 +605,18 @@ header{
 		}		
     	span{
     		display:block;
-			background: $red;
-			color: white;
-			display: inline-block;
-			width: auto;
-			border-radius: 3em;
-			padding: 0.8em 1em;
-			text-transform: uppercase;
-			text-shadow: 0 1px 0 rgba(0,0,0,0.28);
-			@include font-size(16px);
-			@media screen and (min-width: $tab){
-				display: none;
+		background: $red;
+		color: white;
+		display: inline-block;
+		width: auto;
+		border-radius: 3em;
+		padding: 0.8em 1em;
+		text-transform: uppercase;
+		text-shadow: 0 1px 0 rgba(0,0,0,0.28);
+		margin:2em 0 0 0;
+		@include font-size(15px);
+		@media screen and (min-width: $tab){
+			display: none;
     		}
     	}
     	img{
@@ -585,7 +625,7 @@ header{
 				display: block;
 				width: 100%;
 			}
-    	}
+    		}
 	}
 }
 .timer{
@@ -617,7 +657,7 @@ header{
 	position: relative;
 	>img{
 		position: absolute;
-		bottom: 0;
+		bottom: -1px;
 		width: 100%;
 		z-index: 15;
 		left:0;
@@ -626,6 +666,7 @@ header{
 
 .sub-header-inner{
 	overflow: hidden;
+	max-height:400px;
 	h1{
 		position: absolute;
 		left: 50%;
@@ -679,6 +720,7 @@ ul.filter-nav{
 		display:inline;
 		text-decoration:none;
 		margin: 1em 0em;
+		background:none!important;
 		a{
 			color:#B9B9B9;	
 			text-transform: uppercase;
@@ -738,10 +780,6 @@ ul.filter-nav{
 				margin: 0 0 0.5em 0;
 
 			}
-			li::before {
-			  content: "•  ";
-			  color: $red; 
-			}
 		}
 	}
 	.product-details:last-child{
@@ -751,9 +789,18 @@ ul.filter-nav{
 
 // WIN
 .win-intro{
-	max-width:700px;
-	margin:0 auto 2em auto;
+	max-width:720px;
+	margin:0 auto 0 auto;
 	padding:0px!important;
+	@media screen and (min-width: $tab){
+		margin:0 auto 2em auto;
+	}
+	p{
+		max-width: 720px!important;
+	}
+	.timer{
+		margin:1em 0 0 0;
+	}
 }
 .form-outer{
 	padding: 2em 5%;
@@ -769,11 +816,13 @@ ul.filter-nav{
 .form-wrap{
 	background:#fff;
 	max-width:675px;
-	margin:0 5%;
+	margin:0 auto;
 	box-shadow: 0 0 4px 0 rgba(0,0,0,0.50);
 	border-radius: 6px;
 	padding:2em;
 	text-align:left;
+	z-index: 100;
+    	position: relative;
 	@media (min-width:1024px){
 		margin:0 auto;	
 	}
@@ -833,6 +882,7 @@ form{
 	input.button{
 		border:none;
 		width:100%;
+		-webkit-appearance: none;
 		@media (min-width:648px){
 			width: 250px;
 		    margin: 1.5em auto 0 auto;
@@ -893,7 +943,7 @@ hr{
             width: 18px;
             height: 15px;
             transition: all 0.5s ease;
-            background-image:url(../images/icon-accordion-arrow.svg);
+            background-image:url(../../images/icon-accordion-arrow.svg);
             background-repeat: no-repeat;
             left: 50%;
             position: absolute;
@@ -998,7 +1048,7 @@ hr{
 		list-style:none;
 		padding: 0;
 		li{
-			background:url(../images/dot.svg) no-repeat left 0.5em;
+			background:url(../../images/dot.svg) no-repeat left 0.5em;
 			padding-left: 1em;
 		}
 	}
@@ -1008,15 +1058,20 @@ hr{
 
 .story-block{
 	margin-bottom: 2em;
-    @media (min-width: $tab ){
+	@media (min-width: $tab ){
 		display: flex;
-    }
+		float:left;
+		@include clearfix();
+		background:#ffffff;
+		border-radius:5px;
+	}
 	img{
 		width: 100%;
 		height: auto;
 		border-radius: 5px 5px 0 0;
 		@media (min-width: $tab ){
-			width: auto;
+			width: 48%;
+			float:left;
 			flex-grow: 1;
 			flex-basis: auto;
 			border-radius: 5px 0 0 5px;
@@ -1029,7 +1084,8 @@ hr{
 		height: auto;
 		display: block;
     	@media (min-width: $tab ){
-			width: 50%;
+			width: 41%;
+			float:right;
 			padding: 2em 2em 1em 2em;
 			border-radius: 0 5px 5px 0;
 			flex-grow: 1;
@@ -1124,13 +1180,13 @@ footer{
 	left:0;
 	bottom:0;
 	width:100%;
-	z-index: 5;
+	z-index: 150;
 	span{
 		content:'';
 		display: block;
-		width: 14px;
-		height: 14px;
-		background:url(../images/icon-x.svg) no-repeat;
+		width: 34px;
+		height: 34px;
+		background:url(../../images/icon-x.svg) no-repeat;
 		position: absolute;
 		right: 20px;
 		top: 50%;
@@ -1150,11 +1206,97 @@ footer{
 		text-transform: uppercase;
 		text-decoration: underline;
 		@include transition();
-    	@media (min-width: $tab ){
-			@include font-size(22px);
-    	}
+	    	@media (min-width: $tab ){
+				@include font-size(22px);
+	    	}
 		&:hover{
 			background: #5e8e21;
 		}
 	}
+}
+
+/* CLOUDS */
+
+#clouds{
+	display:none;
+	@media (min-width: 640px ){
+		display:block;
+		position:absolute;
+		top:120px;
+	}
+
+}
+.cloud {
+	
+	position: relative; 
+}
+/*Time to animate*/
+.x1 {
+	-webkit-animation: moveclouds 15s linear infinite;
+	-moz-animation: moveclouds 15s linear infinite;
+	-o-animation: moveclouds 15s linear infinite;
+}
+
+/*variable speed, opacity, and position of clouds for realistic effect*/
+.x2 {
+	left: 450px; 
+	top: -110px;
+	
+	-webkit-animation: moveclouds 40s linear infinite;
+	-moz-animation: moveclouds 40s linear infinite;
+	-o-animation: moveclouds 40s linear infinite;
+	background:url(../../images/cloud1.png) no-repeat;
+	height:50px;
+	width:91px;
+}
+
+.x3 {
+	left: 250px; 
+	top: -100px;
+	@media (min-width: $tab ){
+		top: -150px;
+	}
+	@media (min-width: $desk ){
+		top: -100px;
+	}
+	
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
+	background:url(../../images/cloud1.png) no-repeat;
+	height:50px;
+	width:91px;
+}
+
+.x4 {
+	left: 0px; 
+	top: -100px;
+
+	@media (min-width: $tab ){
+		top: -150px;
+	}
+	@media (min-width: $desk ){
+		top: -100px;
+	}
+	
+	-webkit-animation: moveclouds 28s linear infinite;
+	-moz-animation: moveclouds 28s linear infinite;
+	-o-animation: moveclouds 28s linear infinite;
+
+	background:url(../../images/cloud2.png) no-repeat;
+	height:66px;
+	width:119px;
+}
+
+@-webkit-keyframes moveclouds {
+	0% {margin-left: 1400px;}
+	100% {margin-left: -1400px;}
+}
+@-moz-keyframes moveclouds {
+	0% {margin-left: 1400px;}
+	100% {margin-left: -1400px;}
+}
+@-o-keyframes moveclouds {
+	0% {margin-left: 1400px;}
+	100% {margin-left: -1400px;}
 }
