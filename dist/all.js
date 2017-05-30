@@ -1,4 +1,4 @@
-$(".codes-fixed span").click(function(){
+$(".codes-fixed span").on('click touch', function (){
 	$(".codes-fixed").fadeOut();
 });
 $(".mob-nav").click(function(){
