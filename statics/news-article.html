@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>News</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/owl.carousel.min.css">
+    	<link rel="stylesheet" href="dist/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="dist/css/styles.css">
+</head>
+</head>
+<body>
+	<header>
+		<a class="logo" href="index.html"><img src="images/anchor-logo.png" alt=""></a>
+		<div class="logo-bg"></div>
+		<div class="header-wrap">
+			<nav>
+				<ul>
+					<li class="nav-home"><a href="index.html">Home</a></li>
+					<li><a href="our-story.html">Our Story</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li class="right"><a href="win.html">Prize draw</a></li>
+					<li class="right"><a href="news.html">Our News</a></li>
+				</ul>
+			</nav>
+			<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+			</ul>
+		</div>
+		<span class="mob-nav">Menu</span>
+	</header>
+	<main>
+		<section class="sub-header">
+			<div class="sub-header-inner">
+				<h1>NEWS</h1>
+				<a href=""><img src="images/products-header.jpg" alt=""></a>
+			</div>
+			<img src="images/white-curve.svg" alt="">
+		</section>
+		<div class="content-wrap">
+			<div class="news-article">
+				<div class="date">Wednesday, 19th July 2017</div>
+				<h2>Lorem ipsum folor sit</h2>
+				<img src="images/news-static.jpg" alt="">
+				<article>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href="#">Ut enim ad minim veniam</a>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
+					<ul>
+						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
+						<li><p>Lorem ipsum dolor sit amet.</p></li>
+						<li><p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
+						<li><p>Elit, sed do eiusmod tempor incididunt ut labore et dolore labore magna aliqua.</p></li>
+					</ul>
+				</article>
+				<a href="news.html">Back to News</a>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<img class="footer-top" src="images/footer-top.svg" alt="">
+		<div class="footer-in">
+			<img src="images/the-good-stuff.png" alt="" class="footer-good-stuff">
+			<div class="footer-content">
+				<p>Lorem ipsum door sit amet &copy;2017</p>
+				<ul class="footer-nav">
+					<li><a href="">Cookie Policy</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Terms &amp; Conditions</a></li>
+					<li><a href="">FAQs</a></li>
+					<li class="last"><a href="">Contact us</a></li>
+				</ul>
+				<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<div class="codes-fixed"><a href="win.html">You can still use your good stuff hub codes here</a><span></span></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+    <script>//Accordion
+        $(document).ready(function() {
+            $(".accordion .accord-header").click(function() {
+              if($(this).next("div").is(":visible")){
+                $(this).next("div").slideUp("fast");
+                $(this).removeClass("active");
+              } else {
+                $(".accordion .accord-content").slideUp("fast");
+                $(this).next("div").slideToggle("fast");
+                $(this).addClass("active").siblings().removeClass("active");;
+              }
+            });
+        });
+    </script>
+</body>
+</html>

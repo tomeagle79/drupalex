@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Document</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="dist/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="dist/css/styles.css">
+</head>
+<title>Anchor | Home</title>
+</head>
+<body>
+	<header>
+		<a class="logo" href="index.html"><img src="images/anchor-logo.png" alt=""></a>
+		<div class="logo-bg"></div>
+		<div class="header-wrap">
+			<nav>
+				<ul>
+					<li class="nav-home"><a href="index.html">Home</a></li>
+					<li><a href="our-story.html">Our Story</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li class="right"><a href="win.html">Prize draw</a></li>
+					<li class="right"><a href="news.html">Our News</a></li>
+				</ul>
+			</nav>
+			<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+			</ul>
+		</div>
+		<span class="mob-nav">Menu</span>
+	</header>
+	<main>
+		<section class="carousel">
+			<div class="owl-carousel">
+				<a href=""><img src="images/hero-1.jpg" alt=""></a>
+				<a href=""><img src="images/hero-1.jpg" alt=""></a>
+				<a href=""><img src="images/hero-1.jpg" alt=""></a>
+				<a href=""><img src="images/hero-1.jpg" alt=""></a>
+			</div>
+			<img src="images/main-top-curve.png" alt="">
+		</section>
+		<section class="with-background main">
+			<div class="intro">
+				<h1>Hello, We're Anchor</h1>
+				<p>We make honest, British dairy, so you can trust it’s real. It’s simple… real dairy for real families.</p>
+			</div>
+			<div id="clouds">
+				<div class="cloud x2"></div>
+				<div class="cloud x3"></div>
+				<div class="cloud x4"></div>
+			</div>
+			<div class="triptych">
+				<div>
+					<img src="images/trip-butter.png" alt="">
+					<a class="button" href="">View products</a>
+				</div>
+				<div>
+					<img src="images/trip-spread.png" alt="">
+					<a class="button" href="">View products</a>
+				</div>
+				<div>
+					<img src="images/trip-cream.png" alt="">
+					<a class="button" href="">View products</a>
+				</div>
+			</div>
+
+		</section><section>	
+			<div class="home-hub">
+				<!-- <img class="white-top" src="images/white-top.svg" alt=""> -->
+				<!-- <img class="good-stuff-red" src="images/good-stuff-red.svg" alt=""> -->
+				<img class="good-stuff" src="images/good-stuff-hub.png" alt="">
+				<div class="content">
+					<h3>Looking for the Good Stuff Hub?</h3>
+					<p>You’ve come to our new and improved site!<br>Use your remaining codes to enter our  exciting final prize draw.</p>
+					<div class="timer">
+						<p>You have  <span><span class="days"></span> days </span>,  <span><span class="hours"></span> hrs </span>,  <span><span class="minutes"></span> minutes</span>, and <span><span class="seconds"></span> seconds</span> left to enter!</p>
+					</div>
+				</div>
+				<a class="sign" href="win.html"><span>Enter the final prize draw here</span><img src="images/sign.svg" alt="Click here to enter the final prize draw"></a>
+			</div>
+</section>
+		<section class="white tv">
+			<img class="white-top" src="images/white-top.svg" alt="">
+			<h2>Our latest TV ad</h2>
+			<div class="iframe-wrap">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/Ec7IjdtE0lg?showinfo=0" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<img class="footer-top" src="images/footer-top.svg" alt="">
+		<div class="footer-in">
+			<img src="images/the-good-stuff.png" alt="" class="footer-good-stuff">
+			<div class="footer-content">
+				<p>Lorem ipsum door sit amet &copy;2017</p>
+				<ul class="footer-nav">
+					<li><a href="">Cookie Policy</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Terms &amp; Conditions</a></li>
+					<li><a href="">FAQs</a></li>
+					<li class="last"><a href="">Contact us</a></li>
+				</ul>
+				<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<div class="codes-fixed"><a href="win.html">You can still use your good stuff hub codes here</a><span></span></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="dist/js/jquery.countdown.min.js"></script>
+	<script>
+  		$(".timer").countdown("2017/05/24", function(event) {
+   			$('.days').html(event.strftime('%d'));
+   			$('.hours').html(event.strftime('%H'));
+   			$('.minutes').html(event.strftime('%M'));
+   			$('.seconds').html(event.strftime('%S'));
+  		});
+  	</script>
+	<script src="dist/js/owl.carousel.min.js"></script>
+	<script>
+		$('.owl-carousel').owlCarousel({
+    		loop:true,
+    		nav:true,
+    		items:1
+		});
+	</script>
+</body>
+</html>

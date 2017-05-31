@@ -177,11 +177,11 @@ header{
 		top: 28px;
 		color: $red;
 		text-transform: uppercase;
-		background:url(../../images/icon-lines.svg) no-repeat right top;
+		background:url(/themes/custom/anchor/images/icon-lines.svg) no-repeat right top;
 		padding-right: 0.75em;
 		cursor: pointer;
 		&.active{
-			background:url(../../images/icon-close.svg) no-repeat right top;
+			background:url(/themes/custom/anchor/images/icon-close.svg) no-repeat right top;
 		}
 	}
 	.logo{
@@ -334,7 +334,7 @@ header{
 	.owl-prev{
 		left: -50px;
 		border-radius: 0 100px 100px 0;
-		background: url(../../images/arrow-l.svg) white no-repeat;
+		background: url(/themes/custom/anchor/images/arrow-l.svg) white no-repeat;
 		background-position: 75% 50%;
 		&:hover{
 			left: -25px;
@@ -343,7 +343,7 @@ header{
 	.owl-next{
 		right: -50px;
 		border-radius: 100px 0 0 100px;
-		background: url(../../images/arrow-r.svg) white no-repeat;
+		background: url(/themes/custom/anchor/images/arrow-r.svg) white no-repeat;
 		background-position: 25% 50%;
 		&:hover{
 			right: -25px;
@@ -388,19 +388,19 @@ header{
 	}
 	.facebook{
 		a{
-			background: url(../../images/icon-facebook.svg) no-repeat;
+			background: url(/themes/custom/anchor/images/icon-facebook.svg) no-repeat;
 			background-size: 100%;
 		}
 	}
 	.twitter{
 		a{
-			background: url(../../images/icon-twitter.svg) no-repeat;
+			background: url(/themes/custom/anchor/images/icon-twitter.svg) no-repeat;
 			background-size: 100%;
 		}
 	}
 	.youtube{
 		a{
-			background: url(../../images/icon-youtube.svg) no-repeat;
+			background: url(/themes/custom/anchor/images/icon-youtube.svg) no-repeat;
 			background-size: 100%;
 		}
 	}
@@ -409,7 +409,7 @@ header{
 .main{
 	@include clearfix();
 	@media screen and (min-width: $tab){
-		background: url(../../images/main-bg-no-curve.jpg) #648D3E no-repeat;
+		background: url(/themes/custom/anchor/images/main-bg-no-curve.jpg) #648D3E no-repeat;
 		background-size: 100% auto;
 	}
 }
@@ -501,6 +501,17 @@ header{
 			width: 100%;
 			height: auto;
 			max-width: 280px;
+		}
+		.trip-title{
+			width: 70%;
+			margin: 0 auto;
+		}
+		.trip-image{
+			width: 60%;
+			margin: 0 auto;
+			img{
+				max-width: 250px;
+			}
 		}
 	}
 	.button{
@@ -943,7 +954,7 @@ hr{
             width: 18px;
             height: 15px;
             transition: all 0.5s ease;
-            background-image:url(../../images/icon-accordion-arrow.svg);
+            background-image:url(/themes/custom/anchor/images/icon-accordion-arrow.svg);
             background-repeat: no-repeat;
             left: 50%;
             position: absolute;
@@ -1048,7 +1059,7 @@ hr{
 		list-style:none;
 		padding: 0;
 		li{
-			background:url(../../images/dot.svg) no-repeat left 0.5em;
+			background:url(/themes/custom/anchor/images/dot.svg) no-repeat left 0.5em;
 			padding-left: 1em;
 		}
 	}
@@ -1186,7 +1197,7 @@ footer{
 		display: block;
 		width: 34px;
 		height: 34px;
-		background:url(../../images/icon-x.svg) no-repeat;
+		background:url(/themes/custom/anchor/images/icon-x.svg) no-repeat;
 		position: absolute;
 		right: 20px;
 		top: 50%;
@@ -1245,7 +1256,7 @@ footer{
 	-webkit-animation: moveclouds 40s linear infinite;
 	-moz-animation: moveclouds 40s linear infinite;
 	-o-animation: moveclouds 40s linear infinite;
-	background:url(../../images/cloud1.png) no-repeat;
+	background:url(/themes/custom/anchor/images/cloud1.png) no-repeat;
 	height:50px;
 	width:91px;
 }
@@ -1263,7 +1274,7 @@ footer{
 	-webkit-animation: moveclouds 20s linear infinite;
 	-moz-animation: moveclouds 20s linear infinite;
 	-o-animation: moveclouds 20s linear infinite;
-	background:url(../../images/cloud1.png) no-repeat;
+	background:url(/themes/custom/anchor/images/cloud1.png) no-repeat;
 	height:50px;
 	width:91px;
 }
@@ -1283,7 +1294,7 @@ footer{
 	-moz-animation: moveclouds 28s linear infinite;
 	-o-animation: moveclouds 28s linear infinite;
 
-	background:url(../../images/cloud2.png) no-repeat;
+	background:url(/themes/custom/anchor/images/cloud2.png) no-repeat;
 	height:66px;
 	width:119px;
 }

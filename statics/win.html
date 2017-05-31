@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+
+	<title>Win</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/owl.carousel.min.css">
+    	<link rel="stylesheet" href="dist/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="dist/css/styles.css">
+
+</head>
+</head>
+<body>
+	<header>
+		<a class="logo" href="index.html"><img src="images/anchor-logo.png" alt=""></a>
+		<div class="logo-bg"></div>
+		<div class="header-wrap">
+			<nav>
+				<ul>
+					<li class="nav-home"><a href="index.html">Home</a></li>
+					<li><a href="our-story.html">Our Story</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li class="right"><a href="win.html">Prize draw</a></li>
+					<li class="right"><a href="news.html">Our News</a></li>
+				</ul>
+			</nav>
+			<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+			</ul>
+		</div>
+		<span class="mob-nav">Menu</span>
+	</header>
+	<main>
+		<section class="sub-header">
+			<div class="sub-header-inner">
+				<h1>Win xxx</h1>
+				<a href=""><img src="images/win-header.jpg" alt=""></a>
+			</div>
+			<img src="images/main-top-curve.png" alt="">
+		</section>
+		<section class="with-background main">
+			<div class="intro win-intro">
+				<p class="regular-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+				<div class="timer">
+					<p>You have  <span><span class="days"></span> days </span>,  <span><span class="hours"></span> hrs </span>,  <span><span class="minutes"></span> minutes</span>, and <span><span class="seconds"></span> seconds</span> left to enter!</p>
+				</div>
+			</div>
+			<div id="clouds">
+				<div class="cloud x2"></div>
+				<div class="cloud x3"></div>
+				<div class="cloud x4"></div>
+			</div>
+			<div class="form-outer">
+				<div class="form-wrap">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+				<form action="">
+					<div class="label-wrap">
+						<label for="">First name</label>
+						<input type="text">
+					</div>
+					<div class="label-wrap">
+						<label for="">Surname</label>
+						<input type="text">
+					</div>
+					<div class="label-wrap">
+						<label for="">Email</label>
+						<input type="email">
+					</div>
+					<div class="label-wrap">
+						<label for="">Phone</label>
+						<input type="tel">
+					</div>
+					<div style="clear:both"></div>
+					<hr>
+					<div class="label-wrap loyalty-code">
+						<label for="">Loylty code</label>
+						<input type="tel">
+					</div>
+					<div style="clear:both"></div>
+					<hr>
+					<div style="clear:both"></div>
+					<div class="label-wrap terms-wrap">
+						<label for="" class="terms">I agree to the terms and conditions</label>
+						<input type="checkbox" class="terms-check">
+					</div>
+					<div class="label-wrap terms-wrap">
+						<label for="" class="terms">Please send me any further offers</label>
+						<input type="checkbox" class="terms-check">
+					</div>
+					<div style="clear:both"></div>
+					<hr>
+					<input type="submit" value="ENTER" class="button">
+				</form>
+			</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<img class="footer-top" src="images/footer-top.svg" alt="">
+		<div class="footer-in">
+			<img src="images/the-good-stuff.png" alt="" class="footer-good-stuff">
+			<div class="footer-content">
+				<p>Lorem ipsum door sit amet &copy;2017</p>
+				<ul class="footer-nav">
+					<li><a href="">Cookie Policy</a></li>
+					<li><a href="">Privacy Policy</a></li>
+					<li><a href="">Terms &amp; Conditions</a></li>
+					<li><a href="">FAQs</a></li>
+					<li class="last"><a href="">Contact us</a></li>
+				</ul>
+				<ul class="social">
+				<li class="facebook"><a href=""></a></li>
+				<li class="twitter"><a href=""></a></li>
+				<li class="youtube"><a href=""></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="dist/js/jquery.countdown.min.js"></script>
+	<script>
+  		$(".timer").countdown("2017/05/24", function(event) {
+   			$('.days').html(event.strftime('%d'));
+   			$('.hours').html(event.strftime('%H'));
+   			$('.minutes').html(event.strftime('%M'));
+   			$('.seconds').html(event.strftime('%S'));
+  		});
+  	</script>
+</body>
+</html>

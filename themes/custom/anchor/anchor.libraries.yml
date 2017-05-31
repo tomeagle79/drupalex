@@ -1,0 +1,10 @@
+globals:
+  css:
+    theme:
+      css/owl.theme.default.min.css: {}
+      css/owl.carousel.min.css: {}
+      css/styles.css: {}
+  js:
+    js/jquery.countdown.min.js: {}
+    js/owl.carousel.min.js: {}
+    js/all.min.js: {}
