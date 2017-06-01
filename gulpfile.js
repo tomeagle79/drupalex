@@ -28,7 +28,7 @@ gulp.task('sass', function() {
           outputStyle: 'compressed',
           includePaths: ['node_modules/susy/sass']
       }).on('error', sass.logError))
-      .pipe(gulp.dest('dist/css'));
+      .pipe(gulp.dest('themes/custom/anchor/css'));
 });
 
 

@@ -9,3 +9,7 @@ libraries:
 regions:
      carousel: ‘Home Carousel'
      home3products: ‘Home 3 Products'
+     products: ‘Products main'
+     stories: ‘Stories'
+     news: 'News'
+     faq: ‘FAQ'

@@ -88,7 +88,20 @@
       </div>
     </div>
   </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <?php if (strpos($_SERVER['REQUEST_URI'], "faqs") !== false){ ?>
+  <script>$(document).ready(function() {
+    $(".accordion .accord-header").click(function() {
+      if($(this).next("div").is(":visible")){
+        $(this).next("div").slideUp("fast");
+        $(this).removeClass("active");
+      } else {
+        $(".accordion .accord-content").slideUp("fast");
+        $(this).next("div").slideToggle("fast");
+        $(this).addClass("active").siblings().removeClass("active");;
+      }
+    });
+});</script>
+   <?php } ?>
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
   </body>
 </html>
