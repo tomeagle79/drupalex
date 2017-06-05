@@ -14,3 +14,5 @@ regions:
      news: 'News'
      faq: ‘FAQ'
      greenbar: ‘Green bar'
+     menublock: 'Menu block'
+     form: 'Form'

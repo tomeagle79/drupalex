@@ -719,7 +719,8 @@ header{
 	}
 }
 // PRODUCTS
-ul.filter-nav{
+.filter-nav{
+	ul{
 	border-bottom: 2px solid #E8E8E8;
 	margin: 0 auto 2em auto;
 	padding: 0;
@@ -738,10 +739,11 @@ ul.filter-nav{
 			padding:1em 2em;
 			margin: 0;
     			display: inline-block;
-			&:hover{
+			&:hover, &.is-active{
 				color:$red;
 			}
 		}
+	}
 	}
 }
 .products-wrap{
@@ -790,6 +792,12 @@ ul.filter-nav{
 				list-style-type: none;
 				margin: 0 0 0.5em 0;
 
+			}
+		}
+		> div{
+			div{
+				background: url(/themes/custom/anchor/images/dot.svg) no-repeat left 0.5em;
+    			padding-left: 1em;
 			}
 		}
 	}

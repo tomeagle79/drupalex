@@ -84,4 +84,6 @@
     </section>
     </div>
 
-
+    {% if node.field_fixed_code_display_.value == '1' %}
+      {{ drupal_region('greenbar') }}
+    {% endif %}

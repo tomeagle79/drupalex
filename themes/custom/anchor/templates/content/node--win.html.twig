@@ -95,9 +95,10 @@
       <div class="form-outer">
         <div class="form-wrap">
         <p>{{ content.field_form_intro_text }}</p>
-        <iframe src="localhost/anchor/statics/index.php"></iframe>
+        {{ drupal_region('form') }}
       </div>
       </div>
     </section>
-
-  <div class="codes-fixed"><a href="">You can still use your good stuff hub codes here</a><span></span></div>
+    {% if node.field_fixed_code_display_.value == '1' %}
+      {{ drupal_region('greenbar') }}
+    {% endif %}
