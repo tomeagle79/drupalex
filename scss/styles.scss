@@ -782,10 +782,10 @@ ul.filter-nav{
 	.product-details{
 		margin:0 0 2em 0;
 		border-bottom:4px #E8E8E8 solid;
-		ul{
+		ul, > div{
 			padding:0;
 			margin:0 0 2em 0;
-			li{
+			li, div{
 				font-family: 'gbk';
 				list-style-type: none;
 				margin: 0 0 0.5em 0;

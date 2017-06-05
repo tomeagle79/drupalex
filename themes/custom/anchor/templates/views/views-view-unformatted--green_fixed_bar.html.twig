@@ -18,15 +18,11 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-<div class="products-wrap">
 {% for row in rows %}
   {%
     set row_classes = [
-      default_row_class ? 'product',
+      default_row_class ? 'story-block',
     ]
   %}
-  <div{{ row.attributes.addClass(row_classes) }}>
     {{ row.content }}
-  </div>
 {% endfor %}
-</div>

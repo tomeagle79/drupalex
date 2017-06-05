@@ -34,16 +34,16 @@
   </head>
   <body{{ attributes }}>
   <header>
-    <a class="logo" href=""><img src="/themes/custom/anchor/images/anchor-logo.png" alt=""></a>
+    <a class="logo" href="/"><img src="/themes/custom/anchor/images/anchor-logo.png" alt=""></a>
     <div class="logo-bg"></div>
     <div class="header-wrap">
       <nav>
         <ul>
-          <li class="nav-home"><a href="#">Home</a></li>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Products</a></li>
-          <li class="right"><a href="#">Prize draw</a></li>
-          <li class="right"><a href="#">Our News</a></li>
+          <li class="nav-home"><a href="/">Home</a></li>
+          <li><a href="/our-story">Our Story</a></li>
+          <li><a href="/our-products">Products</a></li>
+          <li class="right"><a href="/win">Prize draw</a></li>
+          <li class="right"><a href="/news">Our News</a></li>
         </ul>
       </nav>
       <ul class="social">
@@ -88,6 +88,7 @@
       </div>
     </div>
   </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <?php if (strpos($_SERVER['REQUEST_URI'], "faqs") !== false){ ?>
   <script>$(document).ready(function() {
     $(".accordion .accord-header").click(function() {
