@@ -30,5 +30,6 @@
  */
 #}
 {% for field in fields -%}
+  {{ field.separator }}
   {{ field.content }}
 {%- endfor %}
