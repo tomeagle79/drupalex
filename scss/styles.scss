@@ -1293,6 +1293,9 @@ strong{
 		border: solid 1px #A1A1A1;
 		@include font-size(18px);
 	}
+	@media (min-width:648px){
+		width:48%;
+	}
 }
 
 /*Time to animate*/
