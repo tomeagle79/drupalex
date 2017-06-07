@@ -1276,8 +1276,10 @@ strong{
 }
 
 .user-login-form{
+	display: block;
 	padding: 3em;
 	text-align: center;
+	float:none;
 	label{
 		display:block;
 		text-transform: uppercase;
@@ -1287,14 +1289,9 @@ strong{
 	input{
 		display:block;
 		width:92%;
-		padding: 3% 4%;
+		padding: 0.5em 1em;
 		border: solid 1px #A1A1A1;
 		@include font-size(18px);
-	}
-	@media (min-width:648px){
-		width:48%;
-		float:left;
-		margin:0 2% 1em 0;
 	}
 }
 
