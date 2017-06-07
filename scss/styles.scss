@@ -673,9 +673,13 @@ header{
 	>img{
 		position: absolute;
 		bottom: -1px;
-		width: 100%;
+		width: 120%;
 		z-index: 15;
-		left:0;
+		left:-10%;
+		@media (min-width:$tab){
+			width: 102%;
+			left: -1%;
+		}
 	}
 }
 
@@ -1253,6 +1257,24 @@ footer{
 	
 	position: relative; 
 }
+
+.basic-wrap{
+	margin-bottom: 7em;
+	margin-top: 2em;
+	@media (min-width:$tab){
+
+	}
+	ul{
+		li{
+  			font-family: 'gbk';
+		}
+	}
+}
+
+strong{
+  font-family: 'gblk';
+}
+
 /*Time to animate*/
 .x1 {
 	-webkit-animation: moveclouds 15s linear infinite;

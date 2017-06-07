@@ -8,3 +8,4 @@ globals:
     js/jquery.countdown.min.js: {}
     js/owl.carousel.min.js: {}
     js/all.min.js: {}
+    js/picturefill.min.js: {}
