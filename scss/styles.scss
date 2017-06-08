@@ -309,8 +309,8 @@ header{
 	>img{
 		position: absolute;
 		bottom: -2px;
-		width: 104%;
-		left: -2%;
+		width: 100%;
+		left: 0;
 		z-index: 15;
 	}
 }
@@ -673,13 +673,9 @@ header{
 	>img{
 		position: absolute;
 		bottom: -1px;
-		width: 120%;
+		width: 100%;
 		z-index: 15;
-		left:-10%;
-		@media (min-width:$tab){
-			width: 102%;
-			left: -1%;
-		}
+		left:0;
 	}
 }
 
@@ -922,6 +918,21 @@ form{
 	    background:#F8DA6C;
 	    border: solid 1px #F8DA6C;
 	}
+	.js-form-type-checkbox{
+		input{
+			display: inline-block;
+			vertical-align: top;
+			width: auto;
+		}
+		label{
+			display: inline-block;
+			vertical-align: top;
+			width: 85%;
+			@media (min-width:648px){
+				width: 70%;
+			}
+		}
+	}
 }
 
 
@@ -946,6 +957,7 @@ hr{
 	/* Set the hr color */
 	color: #D8D8D8; /* old IE */
 	background-color: #D8D8D8; /* Modern Browsers */
+	clear: both;
 }
 .accord-header{
     cursor: pointer;
@@ -1145,7 +1157,7 @@ footer{
 		position: relative;
 	.footer-top{
 		position: absolute;
-		bottom:100%;
+		bottom:99%;
 		width: 100%;
 	}
 	.social{
@@ -1275,11 +1287,24 @@ strong{
   font-family: 'gblk';
 }
 
+article > .js-form-item{
+	display: block;
+	padding: 3em;
+	float:none;
+	margin: 2em auto;
+	@media (min-width:648px){
+		width:35%;
+	}
+}
+
 .user-login-form{
 	display: block;
 	padding: 3em;
-	text-align: center;
 	float:none;
+	margin: 2em auto;
+	.form-item{
+		margin-bottom: 1.5em;
+	}
 	label{
 		display:block;
 		text-transform: uppercase;
@@ -1293,8 +1318,11 @@ strong{
 		border: solid 1px #A1A1A1;
 		@include font-size(18px);
 	}
+	.description{
+		display: none;
+	}
 	@media (min-width:648px){
-		width:48%;
+		width:35%;
 	}
 }
 
@@ -1371,4 +1399,17 @@ strong{
 
 dd{
 	margin-left: 0;
+}
+
+// errors
+
+.alert{
+    position: fixed;
+    width: 94%;
+    padding: 0.5em 3%;
+    color: white;
+    bottom: 0;
+    z-index: 1000;
+    text-align: center;
+    background: red;
 }

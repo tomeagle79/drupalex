@@ -80,6 +80,7 @@
     </section>
     <div class="content-wrap basic-wrap">
     {{ content.body}}
+    {{ drupal_region('entrants') }}
     </div>
     {% if node.field_fixed_code_display_.value == '1' %}
       {{ drupal_region('greenbar') }}
