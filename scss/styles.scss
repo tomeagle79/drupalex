@@ -1362,9 +1362,9 @@ article > .js-form-item{
 		padding: 0.5em 1em;
 		border: solid 1px #A1A1A1;
 		@include font-size(18px);
-		margin-bottom: 1em;
+		margin: 0 auto 1em 0;
 		@media screen and (min-width: $tab){
-			margin-bottom: 0;
+			margin-bottom: 0 auto;
 		}
 	}
 }
