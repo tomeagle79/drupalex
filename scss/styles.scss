@@ -1333,7 +1333,7 @@ article > .js-form-item{
 #protected-pages-enter-password{
 	text-align: center;
 	background: white;
-	margin: 3em auto;
+	margin: 4em auto;
 	padding: 1em;
 	border-radius: 6px;
 	@media screen and (min-width: $tab){
@@ -1345,6 +1345,19 @@ article > .js-form-item{
 	}
 	fieldset{
 		border:none;
+	}
+	label{
+		display:block;
+		text-transform: uppercase;
+		@include font-size(16px);
+		margin:0 0 0.4em 0;
+	}
+	input{
+		display:block;
+		width:92%;
+		padding: 3% 4%;
+		border: solid 1px #A1A1A1;
+		@include font-size(18px);
 	}
 }
 
