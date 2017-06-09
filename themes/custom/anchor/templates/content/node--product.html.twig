@@ -89,11 +89,21 @@
 			<div class="left-container">
 				<div class="product">
 					{{ content.field_product_image }}
+    				% if node.field_show_farmer_owned_logo.value == '1' %}
+    					<img src="/themes/custom/anchor/images/farmer-owned.png" alt="Farmer owned - Care in every step - From cow to you">
+    				% endif %}
+    				% if node.field_show.value == '1' %}
+    					<img src="/themes/custom/anchor/images/assured-food-standard.png" alt="Assured Food Standards">
+    				% endif %}
 				</div>
 			</div>
 			<div class="right-container">
 				<div class="product-details">
 				{{ content.body }}
+				</div>
+				<div class="product-details">
+					<h4>Nutrition</h4>
+					{{ content.field_nutrition }}
 				</div>
 				<div class="product-details">
 					<h4>Ingredients</h4>
