@@ -55,11 +55,11 @@ class EntrantsForm extends FormBase {
 		$human_test = $form_state->getValue('human_test');	
 		if (trim($From_Date) !== "" & trim($To_Date) !== "") {
 			if (trim($From_Date) > trim($To_Date)) {
-				$form_state->setErrorByName('from_date', $this->t('The "From Date" is after the "To Date" - please try again.'));	
+				$form_state->setErrorByName('from_date', $this->t('Make sure the "From Date" is before the "To Date"'));	
 			}		
 		}
 		if (strlen(trim($human_test)) !== 0 ){			
-        	$form_state->setErrorByName('human_test', $this->t('Not Human - oops'));									
+        	$form_state->setErrorByName('human_test', $this->t('Failed validation test. Please refresh the page and try again.'));					
         }
 	}
 		
