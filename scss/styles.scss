@@ -1456,3 +1456,13 @@ dd{
     text-align: center;
     background: red;
 }
+
+.entrants-form{
+    text-align: center;
+    .form-item-from-date{
+    	margin-bottom: 1em;
+    }
+	input.form-date{
+		padding: 5px;
+	}
+}
