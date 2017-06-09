@@ -139,7 +139,7 @@ class CompetitionForm extends FormBase {
 			$count++;
 		}				
 		if ($count > 0 ) {		
-			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, This loyalty code has already been entered'));
+			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, This code has already been used'));
 		}				
 				
 		date_default_timezone_set("Europe/London"); 
@@ -155,7 +155,7 @@ class CompetitionForm extends FormBase {
 		foreach ($result as $row) {
 			$count++;
 		}				
-		if ($count >= 3 ) {		
+		if ($count >= 30 ) {		
 			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, you have entered too many times today. Try again tomorrow.'));				
 		}
 		
