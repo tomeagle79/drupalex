@@ -60,7 +60,7 @@ class CompetitionForm extends FormBase {
             '#name' => 'loyalty_code',		
             '#id' => 'loyalty_code',
             '#type' => 'textfield',
-            '#title' => ('LOYALTY CODE'),
+            '#title' => ('CODE'),
             '#required' => TRUE,
             '#prefix' => '<hr>					
                          <div class="label-wrap loyalty-code">',
@@ -160,12 +160,12 @@ class CompetitionForm extends FormBase {
 		}
 		
 		if (strlen(trim($loyalty_code)) !== 12 ){			
-        	$form_state->setErrorByName('loyalty_code', $this->t('The loyalty code is invalid.'));									
+        	$form_state->setErrorByName('loyalty_code', $this->t('The code is invalid.'));									
         }		
 					
 		$loyalty_code_start = substr(trim($loyalty_code), 0, 2);
 		if (strtoupper(trim($loyalty_code_start)) !== "AB" & strtoupper(trim($loyalty_code_start)) !== "AN" & strtoupper(trim($loyalty_code_start)) !== "AH" & strtoupper(trim($loyalty_code_start)) !== "AF"){			
-        	$form_state->setErrorByName('loyalty_code', $this->t('The loyalty code is invalid.'));									
+        	$form_state->setErrorByName('loyalty_code', $this->t('The code is invalid.'));									
         }				
 		if (strlen(trim($human_test)) !== 0 ){			
         	$form_state->setErrorByName('human_test', $this->t('Failed validation error. Please refresh the page and start again.'));
