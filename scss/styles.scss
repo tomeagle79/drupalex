@@ -757,7 +757,7 @@ header{
 		margin:0 0 3em 0;
 		border-bottom:solid 5px #E8E8E8;
 		padding:0 0 1em 0;
-		@media (min-width:640px){
+		@media (min-width:$tab){
 			width:46%;
 			margin:0 2% 2em 2%;
 			padding:0 0 2em 0;
@@ -777,11 +777,16 @@ header{
 		border-bottom:none;
 		div img{
 			width:100%;
+			margin-bottom: 0;
 		}
 		img.product-info-badge{
 			width: 50%;
 			display: inline-block;
-			max-width: 120px;
+			margin-bottom: 0;
+			max-width: 80px;
+			@media (min-width: $tab){
+				max-width: 120px;
+			}
 		}
 	}
 }
