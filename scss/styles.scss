@@ -779,8 +779,9 @@ header{
 			width:100%;
 		}
 		img.product-info-badge{
-			width: auto;
-			float: left;
+			width: 50%;
+			display: inline-block;
+			max-width: 120px;
 		}
 	}
 }
