@@ -696,10 +696,10 @@ header{
 	max-height:400px;
 	h1{
 		position: absolute;
-		left: 50%;
-		top:50%;
-		transform: translate(-50%,-50%);
-		@include font-size(34px);
+    	left: 20%;
+    	top: 50%;
+    	transform: translate(-12.5%, -55%);
+		@include font-size(28px);
 		color: #FFFFFF;
 		text-shadow: 1px 2px 3px #434343;
 		text-align:center;
