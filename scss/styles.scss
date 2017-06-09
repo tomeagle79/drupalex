@@ -1135,11 +1135,16 @@ hr{
 		@include clearfix();
 		background:#ffffff;
 		border-radius:5px;
+		@include font-size(16px);
+	}
+	@media (min-width: $desk ){
+		@include font-size(18px);
 	}
 	.story-image{
 		width: 100%;
 		height: auto;
 		border-radius: 5px;
+		font-size: 0;
 		@media (min-width: $tab ){
 			width: 48%;
 			float:left;
