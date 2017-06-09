@@ -1127,7 +1127,9 @@ hr{
 
 .story-block{
 	margin-bottom: 2em;
+	margin-top: 2em;
 	@media (min-width: $tab ){
+		margin-top: 0;
 		display: flex;
 		float:left;
 		@include clearfix();
