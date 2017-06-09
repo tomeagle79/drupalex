@@ -164,6 +164,7 @@ img.white-top{
 table{
 	th{
 		width: 50%;
+		text-align: left;
 	}
 	td{
 		width: 50%;
@@ -823,6 +824,10 @@ header{
     			padding-left: 1em;
 			}
 		}
+	}
+	.product-table{
+		margin:0 0 2em 0;
+		border-bottom:4px #E8E8E8 solid;
 	}
 	.product-details:last-child{
 		border-bottom:none;
