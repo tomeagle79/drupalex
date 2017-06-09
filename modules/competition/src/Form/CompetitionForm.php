@@ -139,7 +139,7 @@ class CompetitionForm extends FormBase {
 			$count++;
 		}				
 		if ($count > 0 ) {		
-			$form_state->setErrorByName('loyalty_code', $this->t('Sorry - loyalty code has already been entered'));				
+			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, This loyalty code has already been entered'));
 		}				
 				
 		date_default_timezone_set("Europe/London"); 
@@ -156,7 +156,7 @@ class CompetitionForm extends FormBase {
 			$count++;
 		}				
 		if ($count >= 3 ) {		
-			$form_state->setErrorByName('loyalty_code', $this->t('Sorry - you have already had 30 tries today - please try another day'));				
+			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, you have entered too many times today. Try again tomorrow.'));				
 		}
 		
 		if (strlen(trim($loyalty_code)) !== 12 ){			
@@ -168,7 +168,7 @@ class CompetitionForm extends FormBase {
         	$form_state->setErrorByName('loyalty_code', $this->t('The loyalty code is invalid.'));									
         }				
 		if (strlen(trim($human_test)) !== 0 ){			
-        	$form_state->setErrorByName('human_test', $this->t('Not Human - oops'));									
+        	$form_state->setErrorByName('human_test', $this->t('Failed validation error. Please refresh the page and start again.'));
         }
 	}
 	
