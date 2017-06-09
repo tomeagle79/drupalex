@@ -1139,7 +1139,7 @@ hr{
 	img{
 		width: 100%;
 		height: auto;
-		border-radius: 5px 5px 0 0;
+		border-radius: 5px;
 		@media (min-width: $tab ){
 			width: 48%;
 			float:left;
@@ -1173,7 +1173,9 @@ hr{
 	&:nth-child(2){
 		flex-direction: row-reverse;
 		img{
-			border-radius: 0 5px 5px 0;
+			@media (min-width: $tab ){
+				border-radius: 0 5px 5px 0;
+			}
 		}
 		.block-content{
 			border-radius: 5px 0 0 5px;
