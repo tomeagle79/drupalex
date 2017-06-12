@@ -70,13 +70,13 @@ class CompetitionForm extends FormBase {
             '#name' => 'terms',		
             '#id' => 'terms',
             '#type' => 'checkbox',			
-            '#title' => t('I agree to the terms and conditions'),
+            '#title' => t('I agree to the <a href="/terms-and-conditions">terms and conditions</a>'),
 			'#required' => TRUE,
             '#prefix' => '<div style="clear:both"></div>
                          <hr>
                          <div style="clear:both"></div>
                          <div class="label-wrap terms-wrap">',
-            '#suffix' => '</div>',
+            '#suffix' => '</a></div>',
         );
         $form['offers'] = array(
             '#name' => 'offers',		
