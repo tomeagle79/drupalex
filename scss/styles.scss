@@ -320,7 +320,7 @@ header{
 	position: relative;
 	>img{
 		position: absolute;
-		bottom: 6%;
+		bottom: -6%;
 		width: 100%;
 		left: 0;
 		z-index: 15;
@@ -1323,7 +1323,6 @@ footer{
 
 }
 .cloud {
-	
 	position: relative; 
 }
 
