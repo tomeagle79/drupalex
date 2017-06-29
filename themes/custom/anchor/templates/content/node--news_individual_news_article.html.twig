@@ -70,52 +70,25 @@
  *   in different view modes.
  */
 #}
+{% set date = node.createdtime|format_date('long') %}
+  <section class="sub-header">
+    <div class="sub-header-inner">
+      <h1>News</h1>
+      <a href="">{{content.field_header_image}}</a>
+    </div>
+    <img src="/themes/custom/anchor/images/white-curve.svg" alt="">
+  </section>
+  <div{{ content_attributes }}>
+    <div class="content-wrap">
+      <div class="news-article">
+      <div class="date">{{ date }}</div>
+        <h2>{{node.label}}</h2>        
+        {{ content.field_main_image }}
+        <article>          
+          {{ content.body }}
+        </article>
+        <a href="/news">Back to News</a>
+        </div>
+    </div>
+  </div>
 
-    <section class="sub-header">
-      <div class="sub-header-inner">
-        <h1>Our Products</h1>
-        <a href="">{{content.field_header_image}}</a>
-      </div>
-      <img src="/themes/custom/anchor/images/white-curve.svg" alt="">
-    </section>
-	<div class="content-wrap">
-		<div class="filter-nav">
-			<ul>
-				<li><a href="/our-products/block-butters">Back to products</a></li>
-			</ul>
-		</div>
-		<h2>{{ node.label }}</h2>
-		<div class="products-wrap">
-			<div class="left-container">
-				<div class="product">
-					{{ content.field_product_image }}
-    				{% if node.field_show_farmer_owned_logo.value == '1' %}
-    					<img class="product-info-badge" src="/themes/custom/anchor/images/farmer-owned.png" alt="Farmer owned - Care in every step - From cow to you">
-    				{% endif %}
-    				{% if node.field_show.value == '1' %}
-    					<img class="product-info-badge" src="/themes/custom/anchor/images/assured-food-standard.png" alt="Assured Food Standards">
-    				{% endif %}
-				</div>
-			</div>
-			<div class="right-container">
-				<div class="product-details">
-				{{ content.body }}
-				</div>
-				<div class="product-table">
-					<h4>Nutrition</h4>
-					{{ content.field_nutrition }}
-				</div>
-				<div class="product-details">
-					<h4>Ingredients</h4>
-					{{ content.field_ingredients }}
-				</div>
-				<div class="product-ingredients">
-					<h4>Ingredients</h4>
-					{{ content.field_ingredients_long }}
-				</div>
-			</div>
-		</div>
-	</div>
-    {% if node.field_fixed_code_display_.value == '1' %}
-      {{ drupal_region('greenbar') }}
-    {% endif %}
