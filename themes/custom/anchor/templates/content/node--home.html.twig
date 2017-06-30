@@ -72,20 +72,17 @@
 #}
 
     <section class="with-background main">
-      <div class="intro">
-        <h1>{{ content.field_header_text }}</h1>
-        {{ content.field_intro_copy }}
-      </div>
       <div id="clouds">
         <div class="cloud x2"></div>
         <div class="cloud x3"></div>
         <div class="cloud x4"></div>
       </div>
+      <div class="intro">
+        <h1>{{ content.field_header_text }}</h1>
+        <p>{{ content.field_intro_copy }}</p>
+      </div>
       <dd>{{ drupal_region('home3products') }}</dd>
-
-    </section>
-    <section> 
-      <div class="home-hub">
+<div class="home-hub">
         <img class="good-stuff" src="/themes/custom/anchor/images/good-stuff-hub.png" alt="">
         <div class="content">
           <h3>{{ content.field_good_stuff_hub_title }}</h3>

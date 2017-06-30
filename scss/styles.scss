@@ -151,11 +151,14 @@ a{
 
 
 img.white-top{
-	display: block;
-	position: absolute;
-	left: 0;
-	bottom:100%;
-	width: 100%;			
+	display: none;
+	@media screen and (min-width: $desk){
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom:109%;
+		width: 100%;			
+	}
 }
 
 table{
@@ -180,14 +183,14 @@ header{
 	.mob-nav{
 		content:'Menu';
 		display: block;
-		width: 60px;
+		width: 100px;
 		position:absolute;
-		left: 20px;
+		right: 20px;
 		top: 28px;
 		color: $red;
 		text-transform: uppercase;
 		background:url(/themes/custom/anchor/images/icon-lines.svg) no-repeat right top;
-		padding-right: 1.75em;
+		padding-right: 0.75em;
 		cursor: pointer;
 		&.active{
 			background:url(/themes/custom/anchor/images/icon-close.svg) no-repeat right top;
@@ -302,7 +305,7 @@ header{
 					display: block;
 				}
 			}
-			.right{
+			li.right{
 				@media screen and (min-width: $tab){
 					float: right;
 				}
@@ -317,7 +320,7 @@ header{
 	position: relative;
 	>img{
 		position: absolute;
-		bottom: -6%;
+		bottom: -2px;
 		width: 100%;
 		left: 0;
 		z-index: 15;
@@ -432,42 +435,46 @@ header{
     text-align: center;
     padding-bottom: 0;
     position:relative;
-     overflow: hidden;
+        overflow: hidden;
 	@media screen and (min-width: $desk){
+		padding-bottom: 3em;
 		overflow: hidden;
 	}
     > p{
     	@include font-size(26px);
     	width: 90%;
-    	margin: 0 auto;	
-		@media screen and (min-width: $tab){	
-			width: 70%;
-		}
+    	margin: 0 auto;
+
+	@media screen and (min-width: $tab){	
+		width: 70%;
+	}
     }
     .intro{
-		display: inline-block;
-		padding: 2em;
-		z-index: 100;
-		position: relative;
-		background: $cream;
-		@media screen and (min-width: $tab){
-			display: block;background: none;
+	display: inline-block;
+	padding: 2em;
+	z-index: 100;
+	position: relative;
+	background: $cream;
+	@media screen and (min-width: $tab){
+		display: block;background: none;
+	}
+	@media screen and (max-width: $tab){
+		
+    	}
+	p{
+		font-family: "gblk";
+		@include font-size(20px);
+		max-width: 700px;
+		margin: 0 auto;
+	    	@media screen and (max-width: 640px){	
+			margin: 1em 5%;
 		}
-		>div{
-			font-family: "gblk";
-			@include font-size(20px);
-			max-width: 700px;
-			margin: 0 auto;
-		    @media screen and (max-width: 640px){	
-				margin: 1em 5%;
-			}
-		    @media screen and (min-width: $desk){	
-				@include font-size(24px);
-			}	
-		}
-		h1{
-			margin:0 0 0.2em 0;
-		}
+		
+	}
+	h1{
+		margin:0 0 0.2em 0;
+	}
+
     }
 }
 
@@ -550,19 +557,16 @@ header{
 	position: relative;
 	box-shadow: 0 10px 12px 0 rgba(193,193,193,0.50);
 	padding-bottom: 2em;
-	//margin-bottom: 2em;
+	margin-bottom: 2em;
 	padding-left: 5%;
 	padding-right: 5%;
 	text-align:center;
 	padding: 1em 5%;
-	//background: #648D3E;
+	background: #648D3E;
 	box-shadow: none;
 	padding-bottom: 4em;
 	@media screen and (min-width: $desk){
 		padding-bottom: 6em;
-	}
-	@media screen and (max-width: 47.99em){
-		background:#648D3E;
 	}
 	img.white-top{
 		display: block;
@@ -665,7 +669,6 @@ header{
 .tv{
 	text-align: center;
 	margin-bottom: 5em;
-	padding-top: 2em;
 	iframe{
 		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
 		padding: 7px;
@@ -732,8 +735,7 @@ header{
 	}
 }
 // PRODUCTS
-
-.content-wrap .filter-nav{
+.filter-nav{
 	ul{
 	border-bottom: 2px solid #E8E8E8;
 	margin: 0 auto 2em auto;
@@ -743,28 +745,16 @@ header{
 	text-align: center;
 	@include clearfix();
 	li{
-		display:inline-block;
+		display:inline;
 		text-decoration:none;
+		margin: 1em 0em;
 		background:none!important;
-		padding-left: 0;
-		width: 50%;
-		@media screen and (min-width: $tab){
-			width: auto;
-			margin: 1em 0em;
-		}
 		a{
 			color:#B9B9B9;	
 			text-transform: uppercase;
-			padding:1em 0em;
+			padding:1em 2em;
 			margin: 0;
-    		display: block;
-			@media screen and (min-width: $tab){
-				padding:1em;
-				display: inline-block;
-			}
-			@media screen and (min-width: $tab-wide){
-				padding:1em 2em;
-			}
+    			display: inline-block;
 			&:hover, &.is-active{
 				color:$red;
 			}
@@ -774,7 +764,6 @@ header{
 }
 .products-wrap{
 	@include clearfix();
-	margin-bottom: 4em;
 	.product{
 		text-align:center;
 		margin:0 0 3em 0;
@@ -1136,23 +1125,16 @@ hr{
 
 // Our story
 
-#block-views-block-stories-block-1{
-	@include clearfix();
-	margin-bottom: 3em;
-}
-
 .story-block{
 	margin-bottom: 2em;
 	margin-top: 2em;
-	text-align: left;
-	width:100%;
-	display: block;
-	overflow:hidden;
 	@media (min-width: $tab ){
 		margin-top: 0;
 		display: flex;
-		border-radius:5px;
+		float:left;
 		@include clearfix();
+		background:#ffffff;
+		border-radius:5px;
 		@include font-size(16px);
 	}
 	@media (min-width: $desk ){
@@ -1161,24 +1143,17 @@ hr{
 	.story-image{
 		width: 100%;
 		height: auto;
+		border-radius: 5px;
 		font-size: 0;
-		line-height: 0;
-		background: white;
-		overflow: hidden;
 		@media (min-width: $tab ){
 			width: 48%;
 			float:left;
 			flex-grow: 1;
 			flex-basis: auto;
+			border-radius: 5px 0 0 5px;
 		}
 		img{
 			width: 100%;
-			border-radius:5px;
-			@media (min-width: $tab ){
-				width: auto;
-				height: 100%;
-				border-radius:0;
-			}
 		}
 	}
 	.block-content{
@@ -1191,6 +1166,7 @@ hr{
 			width: 41%;
 			float:right;
 			padding: 2em 2em 1em 2em;
+			border-radius: 0 5px 5px 0;
 			flex-grow: 1;
 			flex-basis: auto;			
     	}
@@ -1206,9 +1182,11 @@ hr{
 		flex-direction: row-reverse;
 		img{
 			@media (min-width: $tab ){
+				border-radius: 0 5px 5px 0;
 			}
 		}
 		.block-content{
+			border-radius: 5px 0 0 5px;
 		}
 	}
 }
@@ -1216,11 +1194,11 @@ hr{
 #block-underourstorycontent{
 	clear:both;
 	max-width:980px;
-	margin:0em 5% 5em 5%;
+	margin:0em 5% 2em 5%;
 	border-radius: 5px;
 	background:white;
 	@media (min-width:1024px){
-		margin:0 auto 5em auto;
+		margin:0 auto 2em auto;
 	}
 	p{
 		padding: 2em;
@@ -1241,21 +1219,13 @@ footer{
 	.social{
 		top: 0;
 		right: 0;
-		li{
-			margin: 0 0.25em;
-			a{
-				width: 50px;
-				height: 50px;
-			}
-		}
 	}
 	.footer-in{
-		padding: 0 1em;
+		padding: 0 3em;
 		position: relative;
 		text-align: center;
 		@media screen and (min-width: $tab){
-			text-align: left;	
-			padding: 0 3em;	
+			text-align: left;			
 		}
 		img{
 			@media screen and (min-width: $tab){
@@ -1270,11 +1240,9 @@ footer{
 		color: white;
 		display: inline-block;
 		vertical-align: top;
-		margin-top: 2em;
-		margin-bottom: 1em;
+		margin-top: 1em;
 		margin-left: 0;
 		position: relative;
-		width: 100%;
 		p{
 			margin-bottom: 1.5em;
 			color: white;
@@ -1285,15 +1253,10 @@ footer{
 		margin-bottom: 0;
 		li{
 			display: inline-block;
-			padding-right: 0.3em;
-			margin-right: 0.3em;
-			margin-bottom: 0.3em;
+			padding-right: 1em;
+			margin-right: 1em;
+			margin-bottom: 1em;
 			border-right: solid 1px white;
-			@media screen and (min-width: $tab){
-				padding-right: 1em;
-				margin-right: 1em;
-				margin-bottom: 1em;
-			}
 			a{
 				color: white;
 				font-family: "gbk";
@@ -1359,6 +1322,7 @@ footer{
 
 }
 .cloud {
+	
 	position: relative; 
 }
 

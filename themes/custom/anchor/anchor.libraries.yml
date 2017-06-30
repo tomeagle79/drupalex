@@ -7,7 +7,5 @@ globals:
   js:
     js/jquery.countdown.min.js: {}
     js/owl.carousel.min.js: {}
-    js/imagesloaded.pkgd.min.js: {}
-    js/masonry.pkgd.min.js: {}
     js/all.min.js: {}
     js/picturefill.min.js: {}
