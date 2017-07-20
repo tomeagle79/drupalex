@@ -128,10 +128,9 @@ class RegistrationForm extends FormBase {
 		->condition('t.Email', $email, '=');
     	$result = $registrants_query->execute()->fetchAll();					
 		$count = 0;
-		$usedPin="test";
+		$usedPin="";
 		foreach ($result as $row) {
 			$count++;
-			
 			$usedPin = $row->Pin;
 			
 			
@@ -139,9 +138,6 @@ class RegistrationForm extends FormBase {
 		if ($count > 1 ) {		
 
 			$form_state->setErrorByName('email', $usedPin);
-			$locRedirect = "http://bricks.couponmicrosite.net/javabricksweb/index.aspx?o=" . $oc . "&c=" . $cc . "&p=" . $randomPIN . "&cpt=" . $contentCPT . "&ct=" . strtoupper($first_name) . "%20" . strtoupper($surname);
-			$url = new TrustedRedirectResponse($locRedirect);				
-			$form_state->setResponse($url);	
 		}	
 	}
 	
@@ -272,6 +268,12 @@ do {
 			}
 } while ($uniquePIN == "false");
 		
+		//Overwrite with used pin
+		if($usedPin != ""){
+			$randomPIN = $usedPin;
+		}
+
+
 		// CIPHER KEY ENCRYPTION
 		$theurl = "http://cpt.coupons.com/au/encodecpt.aspx?p=" . $randomPIN . "&oc=" . $oc . "&sk=" . $shortCK . "&lk=" . $longCK;
 		// open url to grab the cpt
