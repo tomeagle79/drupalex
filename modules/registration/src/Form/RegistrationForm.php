@@ -24,7 +24,7 @@ class RegistrationForm extends FormBase {
    	*/
      public function buildForm(array $form, FormStateInterface $form_state) {
 
-     	$usedPin="blah";
+
 
         $form['first_name'] = array(
             '#name' => 'first_name',		
@@ -273,6 +273,7 @@ do {
 				$uniquePIN = "false";
 			}
 			//Overwrite with used pin
+			$usedPin="blah";
 			if($usedPin != ""){
 				$randomPIN = $usedPin;
 			}
