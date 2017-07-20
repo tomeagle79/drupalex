@@ -131,7 +131,7 @@ class RegistrationForm extends FormBase {
 		$usedPin=0;
 		foreach ($result as $row) {
 			$count++;
-			$usedPin = $result->get('Pin');
+			$usedPin = $row->get('Pin');
 		}	
 		if ($count > 1 ) {		
 			$form_state->setErrorByName('email', $this->t($usedPin));
