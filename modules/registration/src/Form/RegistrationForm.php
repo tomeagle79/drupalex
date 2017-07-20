@@ -68,16 +68,16 @@ class RegistrationForm extends FormBase {
                          <div class="label-wrap terms-wrap">',
             '#suffix' => '</div>',
         );
-        $form['offers'] = array(
-            '#name' => 'offers',		
-            '#id' => 'offers',
-            '#type' => 'checkbox',			
-            '#title' => t('Please send me any further offers'),
-            '#prefix' => '<div class="label-wrap terms-wrap">',
-            '#suffix' => '</div>
-                         <div style="clear:both"></div>
-                         <hr>',
-        ); 
+        //$form['offers'] = array(
+        //    '#name' => 'offers',		
+        //    '#id' => 'offers',
+        //    '#type' => 'checkbox',			
+        //    '#title' => t('Please send me any further offers'),
+        //    '#prefix' => '<div class="label-wrap terms-wrap">',
+        //    '#suffix' => '</div>
+        //                 <div style="clear:both"></div>
+        //                 <hr>',
+        //); 
 		$form['human_test'] = array(
             '#name' => 'human_test',		
             '#id' => 'human_test',
