@@ -79,9 +79,9 @@ class RegistrationForm extends FormBase {
         //                 <hr>',
         //); 
 		$form['human_test'] = array(
-            '#name' => 'human_test',		
+            '#name' => 'human_test',
             '#id' => 'human_test',
-            '#type' => 'hidden',				
+            '#type' => 'hidden',
         );
 		 
         $form['actions']['#type'] = 'actions';
@@ -130,7 +130,7 @@ class RegistrationForm extends FormBase {
 		foreach ($result as $row) {
 			$count++;
 		}				
-		if ($count > 0 ) {		
+		if ($count > 1 ) {		
 			$form_state->setErrorByName('email', $this->t('Sorry, That email address is already registered'));
 		}	
 	}
