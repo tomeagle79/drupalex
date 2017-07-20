@@ -8,6 +8,8 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+$usedPin="";
+
 class RegistrationForm extends FormBase { 
 	/**
    	* {@inheritdoc}
@@ -128,7 +130,7 @@ class RegistrationForm extends FormBase {
 		->condition('t.Email', $email, '=');
     	$result = $registrants_query->execute()->fetchAll();					
 		$count = 0;
-		$usedPin="";
+		
 		foreach ($result as $row) {
 			$count++;
 			$usedPin = $row->Pin;
