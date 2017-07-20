@@ -47,15 +47,15 @@ class RegistrationForm extends FormBase {
             '#prefix' => '<div class="label-wrap">',
             '#suffix' => '</div>',
         );
-        $form['phone'] = array (
-            '#name' => 'phone',		
-            '#id' => 'phone',
-            '#type' => 'text',
-            '#title' => t('PHONE'),
-            '#required' => FALSE,
-            '#prefix' => '<div class="label-wrap">',
-            '#suffix' => '</div>',
-        );          
+        // $form['phone'] = array (
+        //     '#name' => 'phone',		
+        //     '#id' => 'phone',
+        //     '#type' => 'text',
+        //     '#title' => t('PHONE'),
+        //     '#required' => FALSE,
+        //     '#prefix' => '<div class="label-wrap">',
+        //     '#suffix' => '</div>',
+        // );          
         $form['terms'] = array(
             '#name' => 'terms',		
             '#id' => 'terms',
