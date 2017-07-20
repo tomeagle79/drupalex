@@ -128,7 +128,7 @@ class RegistrationForm extends FormBase {
 		->condition('t.Email', $email, '=');
     	$result = $registrants_query->execute()->fetchAll();					
 		$count = 0;
-		$usedPin=0;
+		$usedPin="test";
 		foreach ($result as $row) {
 			$count++;
 			
@@ -139,7 +139,7 @@ class RegistrationForm extends FormBase {
 		}	
 		if ($count > 1 ) {		
 
-			$form_state->setErrorByName('email', $this->t('$usedPin'));
+			$form_state->setErrorByName('email', $this->t($usedPin));
 
 		}	
 	}
