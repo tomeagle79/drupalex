@@ -16,13 +16,16 @@ class RegistrationForm extends FormBase {
    	*/
  	public function getFormId() {
    		return 'registration_form';
-   		$usedPin="";
+
   	}
     
   	/**
    	* {@inheritdoc}
    	*/
      public function buildForm(array $form, FormStateInterface $form_state) {
+
+     	$usedPin="blah";
+
         $form['first_name'] = array(
             '#name' => 'first_name',		
             '#id' => 'first_name',
