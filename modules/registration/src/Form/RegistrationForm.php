@@ -266,13 +266,14 @@ do {
 			else {
 				$uniquePIN = "false";
 			}
+			//Overwrite with used pin
+			if($usedPin != ""){
+				$randomPIN = $usedPin;
+			}
+
 } while ($uniquePIN == "false");
 		
-		//Overwrite with used pin
-		if($usedPin != ""){
-			$randomPIN = $usedPin;
-		}
-
+		
 
 		// CIPHER KEY ENCRYPTION
 		$theurl = "http://cpt.coupons.com/au/encodecpt.aspx?p=" . $randomPIN . "&oc=" . $oc . "&sk=" . $shortCK . "&lk=" . $longCK;
