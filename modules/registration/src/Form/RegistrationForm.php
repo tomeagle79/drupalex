@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\TrustedRedirectResponse;
-$usedPin="";
+
 
 class RegistrationForm extends FormBase { 
 	/**
@@ -16,6 +16,7 @@ class RegistrationForm extends FormBase {
    	*/
  	public function getFormId() {
    		return 'registration_form';
+   		$usedPin="";
   	}
     
   	/**
