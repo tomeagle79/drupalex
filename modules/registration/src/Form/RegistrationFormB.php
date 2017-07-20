@@ -7,7 +7,7 @@ namespace Drupal\registration\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Routing\TrustedRedirectResponse;
+
 class RegistrationForm extends FormBase { 
 	/**
    	* {@inheritdoc}
@@ -47,15 +47,25 @@ class RegistrationForm extends FormBase {
             '#prefix' => '<div class="label-wrap">',
             '#suffix' => '</div>',
         );
-        //$form['phone'] = array (
-        //    '#name' => 'phone',		
-        //    '#id' => 'phone',
-        //    '#type' => 'tel',
-        //    '#title' => t('PHONE'),
-        //    '#required' => TRUE,
-        //    '#prefix' => '<div class="label-wrap">',
-        //    '#suffix' => '</div>',
-        //);          
+        // $form['phone'] = array (
+        //     '#name' => 'phone',		
+        //     '#id' => 'phone',
+        //     '#type' => 'tel',
+        //     '#title' => t('PHONE'),
+        //     '#required' => TRUE,
+        //     '#prefix' => '<div class="label-wrap">',
+        //     '#suffix' => '</div>',
+        // );  
+        $form['loyalty_code'] = array (
+            '#name' => 'loyalty_code',		
+            '#id' => 'loyalty_code',
+            '#type' => 'textfield',
+            '#title' => ('CODE'),
+            '#required' => TRUE,
+            '#prefix' => '<hr>					
+                         <div class="label-wrap loyalty-code">',
+            '#suffix' => '</div>',
+        );  
         $form['terms'] = array(
             '#name' => 'terms',		
             '#id' => 'terms',
@@ -82,14 +92,12 @@ class RegistrationForm extends FormBase {
             '#name' => 'human_test',		
             '#id' => 'human_test',
             '#type' => 'hidden',				
-        );
-		 
+        ); 
         $form['actions']['#type'] = 'actions';
         $form['actions']['submit'] = array(
           '#type' => 'submit',
           '#value' => $this->t('ENTER'),
           '#button_type' => 'primary',
-		  '#attributes' => array('onclick' => 'this.form.target="_blank";return true;'),
         );
         return $form;
     }
@@ -97,12 +105,12 @@ class RegistrationForm extends FormBase {
   	/**
    	* {@inheritdoc}
    	*/
-	public function validateForm(array &$form, FormStateInterface $form_state) {		
+	public function validateForm(array &$form, FormStateInterface $form_state) {
 		$first_name = $form_state->getValue('first_name');
 		$surname = $form_state->getValue('surname');
 		//$phone = $form_state->getValue('phone');
-		$email = $form_state->getValue('email');	
-		
+		$email = $form_state->getValue('email');		
+		$loyalty_code = $form_state->getValue('loyalty_code');
 		$human_test = $form_state->getValue('human_test');
 		
 		if (!$this->Is_a_Letter_or_Space(trim($first_name))) {
@@ -121,18 +129,47 @@ class RegistrationForm extends FormBase {
 		//	$form_state->setErrorByName('phone', $this->t('The telephone number is invalid.'));
 		//}
 		
-		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
-		$registrants_query = $registrants_con->select('Registrants', 't')
+		$entrant_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
+		$entrant_query = $entrant_con->select('Entrants', 't')
         ->fields('t', ['Id'])		
-		->condition('t.Email', $email, '=');
-    	$result = $registrants_query->execute()->fetchAll();					
+		->condition('t.Code', $loyalty_code, '=');
+    	$result = $entrant_query->execute()->fetchAll();		
 		$count = 0;
 		foreach ($result as $row) {
 			$count++;
 		}				
 		if ($count > 0 ) {		
-			$form_state->setErrorByName('email', $this->t('Sorry, That email address is already registered'));
-		}	
+			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, This code has already been used'));
+		}				
+				
+		date_default_timezone_set("Europe/London"); 
+		$thedate = date('Y-m-d');
+		
+		
+		$entrant_query = $entrant_con->select('Entrants', 't')
+        ->fields('t', ['Id'])
+		->condition('t.Email', $email, '=')
+		->condition('t.Date_Of_Entry', $thedate . '%', 'like');
+    	$result = $entrant_query->execute()->fetchAll();		
+		$count = 0;
+		foreach ($result as $row) {
+			$count++;
+		}				
+		if ($count >= 30 ) {		
+			$form_state->setErrorByName('loyalty_code', $this->t('Sorry, you have entered too many times today. Try again tomorrow.'));				
+		}
+		
+		if (strlen(trim($loyalty_code)) !== 12 ){			
+        	$form_state->setErrorByName('loyalty_code', $this->t('The code is invalid.'));									
+        }		
+					
+		$loyalty_code_start = substr(trim($loyalty_code), 0, 2);
+		if (strtoupper(trim($loyalty_code_start)) !== "AB" & strtoupper(trim($loyalty_code_start)) !== "AN" & strtoupper(trim($loyalty_code_start)) !== "AH" & strtoupper(trim($loyalty_code_start)) !== "AF"){			
+        	$form_state->setErrorByName('loyalty_code', $this->t('The code is invalid.'));									
+        }				
+		if (strlen(trim($human_test)) !== 0 ){			
+        	$form_state->setErrorByName('human_test', $this->t('Failed validation error. Please refresh the page and start again.'));
+        }
 	}
 	
 	function Is_a_Letter_or_Space($inputbox) {  		
@@ -215,14 +252,11 @@ class RegistrationForm extends FormBase {
    	* {@inheritdoc}
    	*/
     public function submitForm(array &$form, FormStateInterface $form_state) { 
-		$cc = "AN";
-		$oc = "109808";
-		$longCK = "hLOg4ty8usmIN6BvDlJwcUziPCYa3jderTxK2qSbWXkF19fQnHpREAGVZ75oM";
-		$shortCK = "kynmwpzret";
 		$first_name = $form_state->getValue('first_name');
 		$surname = $form_state->getValue('surname');
 		$email = $form_state->getValue('email');
-		//$phone = $form_state->getValue('phone');
+		//$phone = $form_state->getValue('phone');				
+		$loyalty_code = $form_state->getValue('loyalty_code');
 		//$offers = $form_state->getValue('offers');
 		//if ($offers == 0) {
 		//	$offers = "No";
@@ -231,67 +265,23 @@ class RegistrationForm extends FormBase {
 		//	$offers = "Yes";
 		//}
 		        
-    	$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 		
-		
-		$uniquePIN = "false";
-		$i = 0;
-do {
-    // generate 5 random letters
-			srand((float) microtime() * 10000000);
-			$input = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
-			$rand_keys = array_rand($input, 5);
-			$part1 = $input[$rand_keys[0]] . $input[$rand_keys[1]] . $input[$rand_keys[2]] . $input[$rand_keys[3]] . $input[$rand_keys[4]];
-			// generate 5 random numbers
-			srand((double)microtime()*1000000);
-			$part2 = sprintf("%'05d", rand(0,99999));
-			$randomPIN = $part1 . $part2;
-			// check for duplicate pins in the database
-			$registrants_pin_query = $registrants_con->select('Registrants', 't')
-        	->fields('t', ['Id'])		
-			->condition('t.Pin', $randomPIN, '=');
-    		$result = $registrants_pin_query->execute()->fetchAll();
-			$count = 0;
-			foreach ($result as $row) {
-				$count++;
-			}				
-			if ($count == 0 ) {	
-				$uniquePIN = "true";
-			} 
-			else {
-				$uniquePIN = "false";
-			}
-} while ($uniquePIN == "false");
-		
-		// CIPHER KEY ENCRYPTION
-		$theurl = "http://cpt.coupons.com/au/encodecpt.aspx?p=" . $randomPIN . "&oc=" . $oc . "&sk=" . $shortCK . "&lk=" . $longCK;
-		// open url to grab the cpt
-		$contentCPT = "";
-		if (!($fp = fopen($theurl, 'r'))) {
-			$contentCPT = "";
-		}
-		else {
-			// screen scrape
-			$contentCPT .= fread($fp, 1000000);
-			fclose($fp);
-		}
+    	$entrant_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
 		date_default_timezone_set("Europe/London"); 
 		$thedatetime = date('Y-m-d H:i:s');
-		$registrants_query = $registrants_con->insert('Registrants')
-  			->fields([
-  				'Date_Of_Entry' => $thedatetime,
-  				'First_Name' => $first_name,
-				'Surname' => $surname,
-				'Email' => $email,
-				//'Telephone' => $phone,
-				'Pin' => $randomPIN,
-				//'Please_send_me_any_further_offers' => $offers,
-			])
-		->execute();
-		// READY TO PRINT - redirect to Quotient to print the coupon
-		$locRedirect = "http://bricks.couponmicrosite.net/javabricksweb/index.aspx?o=" . $oc . "&c=" . $cc . "&p=" . $randomPIN . "&cpt=" . $contentCPT . "&ct=" . strtoupper($first_name) . "%20" . strtoupper($surname);
-
-		$url = new TrustedRedirectResponse($locRedirect);			
-		$form_state->setResponse($url);			
+		$entrant_query = $entrant_con->insert('Entrants')
+  							->fields([
+  								'Date_Of_Entry' => $thedatetime,
+  								'First_Name' => $first_name,
+								'Surname' => $surname,
+								'Email' => $email,
+								//'Telephone' => $phone,
+								'Code' => $loyalty_code,
+								//'Please_send_me_any_further_offers' => $offers,
+							])
+						->execute();
+		$redirect_path = "/thank-you";
+		$url = url::fromUserInput($redirect_path);
+		$form_state->setRedirectUrl($url);	
 	}
 }
 ?>
