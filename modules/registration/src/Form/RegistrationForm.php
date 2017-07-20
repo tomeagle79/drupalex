@@ -132,6 +132,8 @@ class RegistrationForm extends FormBase {
 		foreach ($result as $row) {
 			$count++;
 			
+			$usedPin = $row->Email;
+			
 			
 		}	
 		if ($count > 1 ) {		
