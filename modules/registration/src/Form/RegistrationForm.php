@@ -131,11 +131,8 @@ class RegistrationForm extends FormBase {
 		$usedPin="test";
 		foreach ($result as $row) {
 			$count++;
+			echo $row->Pin;
 			
-			if ($count == 1) {	
-			$usedPin = $row->Pin;
-			echo $usedPin;
-			}
 		}	
 		if ($count > 1 ) {		
 
