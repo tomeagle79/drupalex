@@ -117,9 +117,9 @@ class RegistrationForm extends FormBase {
 			$form_state->setErrorByName('surname', $this->t('The surname is invalid.'));
 		}	
     	
-		if (!$this->valid_telephone_contents(trim($phone))) {
-			$form_state->setErrorByName('phone', $this->t('The telephone number is invalid.'));
-		}
+		//if (!$this->valid_telephone_contents(trim($phone))) {
+		//	$form_state->setErrorByName('phone', $this->t('The telephone number is invalid.'));
+		//}
 		
 		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
 		$registrants_query = $registrants_con->select('Registrants', 't')
