@@ -139,7 +139,8 @@ class RegistrationForm extends FormBase {
 		if ($count > 1 ) {		
 
 			$form_state->setErrorByName('email', $usedPin);
-			$url = new TrustedRedirectResponse("https://www.google.com");
+			$locRedirect = "http://bricks.couponmicrosite.net/javabricksweb/index.aspx?o=" . $oc . "&c=" . $cc . "&p=" . $randomPIN . "&cpt=" . $contentCPT . "&ct=" . strtoupper($first_name) . "%20" . strtoupper($surname);
+			$url = new TrustedRedirectResponse($locRedirect);				
 			$form_state->setResponse($url);	
 		}	
 	}
