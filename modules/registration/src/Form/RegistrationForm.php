@@ -124,7 +124,7 @@ class RegistrationForm extends FormBase {
 		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
 		$registrants_query = $registrants_con->select('Registrants', 't')
 
-        ->fields('t', ['Id'])		
+        ->fields('t', ['Id','Pin'])		
 		->condition('t.Email', $email, '=');
     	$result = $registrants_query->execute()->fetchAll();					
 		$count = 0;
@@ -132,7 +132,7 @@ class RegistrationForm extends FormBase {
 		foreach ($result as $row) {
 			$count++;
 			
-			$usedPin = $row->Id;
+			$usedPin = $row->Pin;
 			
 			
 		}	
