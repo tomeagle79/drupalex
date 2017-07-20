@@ -155,33 +155,6 @@ class RegistrationForm extends FormBase {
 		return True;
 	}
 	
-	Function valid_telephone_contents($inputbox) { 
-
-		$teststring = trim($inputbox);
-
-		if (empty($teststring)) {				
-			return False;		
-		}
-		$count = 0;		
-
-		while ($count <  strlen($teststring)) {	
-			$c = substr($teststring, $count, 1);
-			if (($c !== " ") & ($c !== "-") & ($c !== ".") & ($c !== "+") & ($c !== "(") & ($c !== ")") & (!$this->Is_a_Number($c))) {				
-				return False;			
-			}
-			$count++;
-		}		
-
-		if (strlen($teststring) < 10) {		
-			return False;
-		}
-		
-		if (strlen($teststring) > 25) {		
-			return False;	
-		}	
-		return True;
-	}	
-	
 	function Is_a_Number($inputbox) {  		
 
 		$teststring = Trim($inputbox);	
