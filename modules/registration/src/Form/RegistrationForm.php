@@ -139,7 +139,7 @@ class RegistrationForm extends FormBase {
 		}	
 		if ($count > 1 ) {		
 
-			$form_state->setErrorByName('email', $this->t('$usedPin'));
+			$form_state->setErrorByName('email', $usedPin);
 
 		}	
 	}
