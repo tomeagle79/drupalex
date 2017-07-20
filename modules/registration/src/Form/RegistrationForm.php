@@ -316,6 +316,9 @@ do {
 		}
 		date_default_timezone_set("Europe/London"); 
 		$thedatetime = date('Y-m-d H:i:s');
+
+		//PREVENT MULTIPLE DB SUBMISSIONS
+		if($usedPin == ""){
 		$registrants_query = $registrants_con->insert('Registrants')
   			->fields([
   				'Date_Of_Entry' => $thedatetime,
@@ -327,6 +330,8 @@ do {
 				//'Please_send_me_any_further_offers' => $offers,
 			])
 		->execute();
+		}
+
 		// READY TO PRINT - redirect to Quotient to print the coupon
 		$locRedirect = "http://bricks.couponmicrosite.net/javabricksweb/index.aspx?o=" . $oc . "&c=" . $cc . "&p=" . $randomPIN . "&cpt=" . $contentCPT . "&ct=" . strtoupper($first_name) . "%20" . strtoupper($surname);
 
