@@ -123,15 +123,18 @@ class RegistrationForm extends FormBase {
 		
 		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
 		$registrants_query = $registrants_con->select('Registrants', 't')
+
         ->fields('t', ['Id'])		
 		->condition('t.Email', $email, '=');
     	$result = $registrants_query->execute()->fetchAll();					
 		$count = 0;
+		$usedPin=0;
 		foreach ($result as $row) {
 			$count++;
-		}				
+			$usedPin = $result->get('Pin');
+		}	
 		if ($count > 1 ) {		
-			$form_state->setErrorByName('email', $this->t('Sorry, That email address is already registered'));
+			$form_state->setErrorByName('email', $this->t($usedPin));
 		}	
 	}
 	
