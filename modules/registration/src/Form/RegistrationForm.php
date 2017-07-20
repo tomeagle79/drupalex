@@ -47,15 +47,15 @@ class RegistrationForm extends FormBase {
             '#prefix' => '<div class="label-wrap">',
             '#suffix' => '</div>',
         );
-        $form['phone'] = array (
-            '#name' => 'phone',		
-            '#id' => 'phone',
-            '#type' => 'tel',
-            '#title' => t('PHONE'),
-            '#required' => TRUE,
-            '#prefix' => '<div class="label-wrap">',
-            '#suffix' => '</div>',
-        );          
+        //$form['phone'] = array (
+        //    '#name' => 'phone',		
+        //    '#id' => 'phone',
+        //    '#type' => 'tel',
+        //    '#title' => t('PHONE'),
+        //    '#required' => TRUE,
+        //    '#prefix' => '<div class="label-wrap">',
+        //    '#suffix' => '</div>',
+        //);          
         $form['terms'] = array(
             '#name' => 'terms',		
             '#id' => 'terms',
@@ -100,7 +100,7 @@ class RegistrationForm extends FormBase {
 	public function validateForm(array &$form, FormStateInterface $form_state) {		
 		$first_name = $form_state->getValue('first_name');
 		$surname = $form_state->getValue('surname');
-		$phone = $form_state->getValue('phone');
+		//$phone = $form_state->getValue('phone');
 		$email = $form_state->getValue('email');	
 		
 		$human_test = $form_state->getValue('human_test');
@@ -117,9 +117,9 @@ class RegistrationForm extends FormBase {
 			$form_state->setErrorByName('surname', $this->t('The surname is invalid.'));
 		}	
     	
-		if (!$this->valid_telephone_contents(trim($phone))) {
-			$form_state->setErrorByName('phone', $this->t('The telephone number is invalid.'));
-		}
+		//if (!$this->valid_telephone_contents(trim($phone))) {
+		//	$form_state->setErrorByName('phone', $this->t('The telephone number is invalid.'));
+		//}
 		
 		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
 		$registrants_query = $registrants_con->select('Registrants', 't')
@@ -222,7 +222,7 @@ class RegistrationForm extends FormBase {
 		$first_name = $form_state->getValue('first_name');
 		$surname = $form_state->getValue('surname');
 		$email = $form_state->getValue('email');
-		$phone = $form_state->getValue('phone');
+		//$phone = $form_state->getValue('phone');
 		$offers = $form_state->getValue('offers');
 		if ($offers == 0) {
 			$offers = "No";
@@ -282,7 +282,7 @@ do {
   				'First_Name' => $first_name,
 				'Surname' => $surname,
 				'Email' => $email,
-				'Telephone' => $phone,
+				//'Telephone' => $phone,
 				'Pin' => $randomPIN,
 				'Please_send_me_any_further_offers' => $offers,
 			])
