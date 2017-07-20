@@ -273,7 +273,27 @@ do {
 				$uniquePIN = "false";
 			}
 			//Overwrite with used pin
-			$usedPin="blah";
+
+		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
+		$registrants_query = $registrants_con->select('Registrants', 't')
+
+        ->fields('t', ['Id','Pin'])		
+		->condition('t.Email', $email, '=');
+    	$result = $registrants_query->execute()->fetchAll();					
+		$count = 0;
+		$usedPin = "";
+		
+		foreach ($result as $row) {
+			$count++;
+			$usedPin = $row->Pin;
+			
+			
+		}	
+		if ($count > 1 ) {		
+
+			//$form_state->setErrorByName('email', $usedPin);
+		}	
+
 			if($usedPin != ""){
 				$randomPIN = $usedPin;
 			}
