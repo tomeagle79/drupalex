@@ -30,7 +30,7 @@ class RegistrationForm extends FormBase {
             '#name' => 'first_name',		
             '#id' => 'first_name',
             '#type' => 'textfield',
-            '#title' => t('FIRSTNAME:'),
+            '#title' => t('FIRST NAME:'),
             '#required' => TRUE,
             '#prefix' => '<div class="label-wrap">',
             '#suffix' => '</div>',
