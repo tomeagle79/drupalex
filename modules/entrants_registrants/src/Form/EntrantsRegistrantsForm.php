@@ -2,7 +2,7 @@
 /**
 * @file
 */
-namespace Drupal\entrants-registrants\Form;
+namespace Drupal\entrants_registrants\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;

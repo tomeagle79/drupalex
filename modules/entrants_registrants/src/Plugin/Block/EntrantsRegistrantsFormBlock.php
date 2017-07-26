@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\entrants-restrants\Plugin\Block;
+namespace Drupal\entrants_restrants\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Session\AccountInterface;
@@ -20,7 +20,7 @@ class EntrantsRegistrantsFormBlock extends BlockBase {
    	* {@inheritdoc}
    	*/
 	public function build() {    
-		$builtForm = \Drupal::formBuilder()->getForm('Drupal\entrants-registrants\Form\EntrantsRegistrantsForm');	
+		$builtForm = \Drupal::formBuilder()->getForm('Drupal\entrants_registrants\Form\EntrantsRegistrantsForm');	
 		return $builtForm;
   	} 
 }

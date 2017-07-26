@@ -1,0 +1,7 @@
+entrants.form:
+  path: '/entrants_registrants/EntrantsRegistrantsForm'
+  defaults:
+    _title: ''	
+    _form: 'Drupal\entrants_registrants\Form\EntrantsRegistrantsForm'
+  requirements:
+    _permission: 'access content'
