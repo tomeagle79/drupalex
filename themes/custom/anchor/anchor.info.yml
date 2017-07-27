@@ -17,3 +17,4 @@ regions:
      form: 'Form'
      registration: 'Registration'
      entrants: 'Entrants admin'
+     registrants: 'Registrants admin'
