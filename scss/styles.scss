@@ -305,7 +305,7 @@ header{
 					display: block;
 				}
 			}
-			li.right{
+			.right{
 				@media screen and (min-width: $tab){
 					float: right;
 				}
@@ -1518,8 +1518,6 @@ dd{
 		padding: 5px;
 	}
 }
-
-// Extras
 
 .node-57, .node-58{
 	.sub-header-inner{
