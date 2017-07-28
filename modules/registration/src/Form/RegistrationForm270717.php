@@ -24,6 +24,8 @@ class RegistrationForm extends FormBase {
    	*/
      public function buildForm(array $form, FormStateInterface $form_state) {
 
+
+
         $form['first_name'] = array(
             '#name' => 'first_name',		
             '#id' => 'first_name',
@@ -37,7 +39,7 @@ class RegistrationForm extends FormBase {
             '#name' => 'last_name',		
             '#id' => 'last_name',
             '#type' => 'textfield',
-            '#title' => t('LAST NAME:'),
+            '#title' => t('SECOND NAME:'),
             '#required' => TRUE,
             '#prefix' => '<div class="label-wrap">',
             '#suffix' => '</div>',
@@ -64,7 +66,7 @@ class RegistrationForm extends FormBase {
             '#name' => 'terms',		
             '#id' => 'terms',
             '#type' => 'checkbox',			
-            '#title' => t('I agree to the <a href="/coupon-redemption-terms-and-conditions" target="_blank">terms and conditions</a>'),
+            '#title' => t('I agree to the <a href="/terms-and-conditions" target="_blank">terms and conditions</a>'),
 			'#required' => TRUE,
             '#prefix' => '<div style="clear:both"></div>
                          <hr>
@@ -317,8 +319,6 @@ do {
 
 		//PREVENT MULTIPLE DB SUBMISSIONS
 		if($usedPin == ""){
-		
-
 		$registrants_query = $registrants_con->insert('Registrants')
   			->fields([
   				'Date_Of_Entry' => $thedatetime,
