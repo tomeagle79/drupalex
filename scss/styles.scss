@@ -1509,8 +1509,22 @@ dd{
     background: red;
 }
 
-.entrants-form{
+.node-55, .node-56{
+	.sub-header-inner{
+		max-height: inherit;
+		h1{
+			display: none;
+		}
+	}
+}
+
+.entrants-form, .registrationdownload-form{
     text-align: center;
+    display: inline-block;
+    width: 40%;
+	h2{
+		@include font-size(21px);
+	}
     .form-item-from-date{
     	margin-bottom: 1em;
     }
@@ -1519,11 +1533,8 @@ dd{
 	}
 }
 
-.node-57, .node-58{
-	.sub-header-inner{
-		max-height: inherit;
-		h1{
-			display: none;
-		}
+.node-26{
+	.content-wrap{
+		text-align: center;
 	}
 }
