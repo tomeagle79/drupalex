@@ -11,35 +11,26 @@
  */
 #}
 {%
-  set classes = [
-    'layout',
-    'layout--twocol',
-  ]
+set classes = [
+'layout--twocol',
+]
 %}
 {% if content %}
   <div{{ attributes.addClass(classes) }}>
-    {% if content.top %}
-      <div {{ region_attributes.top.addClass('layout__region', 'layout__region--top') }}>
-        {{ content.top }}
-      </div>
-    {% endif %}
+    <div class="layout-region layout-region--fullwidth">
+      {{ content.top }}
+    </div>
 
-    {% if content.first %}
-      <div {{ region_attributes.first.addClass('layout__region', 'layout__region--first') }}>
-        {{ content.first }}
-      </div>
-    {% endif %}
+    <div class="layout-region layout-region--left">
+      {{ content.left }}
+    </div>
 
-    {% if content.second %}
-      <div {{ region_attributes.second.addClass('layout__region', 'layout__region--second') }}>
-        {{ content.second }}
-      </div>
-    {% endif %}
+    <div class="layout-region layout-region--right">
+      {{ content.right }}
+    </div>
 
-    {% if content.bottom %}
-      <div {{ region_attributes.bottom.addClass('layout__region', 'layout__region--bottom') }}>
-        {{ content.bottom }}
-      </div>
-    {% endif %}
+    <div class="layout-region layout-region--fullwidth">
+      {{ content.bottom }}
+    </div>
   </div>
 {% endif %}

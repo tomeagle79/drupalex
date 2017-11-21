@@ -306,8 +306,7 @@ class EditorSecurityTest extends WebTestBase {
     $expected = [
       [
         'node_id' => 1,
-        // No text editor => no XSS filtering.
-        'value' => self::$sampleContent,
+        'value' => self::$sampleContent, // No text editor => no XSS filtering.
         'format' => 'restricted_without_editor',
         'switch_to' => [
           'restricted_with_editor' => self::$sampleContentSecured,
@@ -320,8 +319,7 @@ class EditorSecurityTest extends WebTestBase {
       ],
       [
         'node_id' => 2,
-        // Text editor => XSS filtering.
-        'value' => self::$sampleContentSecured,
+        'value' => self::$sampleContentSecured, // Text editor => XSS filtering.
         'format' => 'restricted_with_editor',
         'switch_to' => [
           // No text editor => no XSS filtering.
@@ -335,8 +333,7 @@ class EditorSecurityTest extends WebTestBase {
       ],
       [
         'node_id' => 3,
-        // Text editor => XSS filtering.
-        'value' => self::$sampleContentSecuredEmbedAllowed,
+        'value' => self::$sampleContentSecuredEmbedAllowed, // Text editor => XSS filtering.
         'format' => 'restricted_plus_dangerous_tag_with_editor',
         'switch_to' => [
           // No text editor => no XSS filtering.
@@ -351,8 +348,7 @@ class EditorSecurityTest extends WebTestBase {
       ],
       [
         'node_id' => 4,
-        // No text editor => no XSS filtering.
-        'value' => self::$sampleContent,
+        'value' => self::$sampleContent, // No text editor => no XSS filtering.
         'format' => 'unrestricted_without_editor',
         'switch_to' => [
           // No text editor => no XSS filtering.
@@ -368,8 +364,7 @@ class EditorSecurityTest extends WebTestBase {
       ],
       [
         'node_id' => 5,
-        // Text editor => XSS filtering.
-        'value' => self::$sampleContentSecured,
+        'value' => self::$sampleContentSecured, // Text editor => XSS filtering.
         'format' => 'unrestricted_with_editor',
         'switch_to' => [
           // From editor, no security filters to security filters, no editor: no

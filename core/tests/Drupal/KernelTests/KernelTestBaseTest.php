@@ -9,10 +9,7 @@ use org\bovigo\vfs\visitor\vfsStreamStructureVisitor;
 
 /**
  * @coversDefaultClass \Drupal\KernelTests\KernelTestBase
- *
  * @group PHPUnit
- * @group Test
- * @group KernelTests
  */
 class KernelTestBaseTest extends KernelTestBase {
 
@@ -140,21 +137,22 @@ class KernelTestBaseTest extends KernelTestBase {
   }
 
   /**
-   * Tests whether the fixture allows us to install modules and configuration.
+   * @covers ::getCompiledContainerBuilder
    *
-   * @see ::testSubsequentContainerIsolation()
+   * The point of this test is to have integration level testing.
    */
-  public function testContainerIsolation() {
+  public function testCompiledContainer() {
     $this->enableModules(['system', 'user']);
     $this->assertNull($this->installConfig('user'));
   }
 
   /**
-   * Tests whether the fixture can re-install modules and configuration.
+   * @covers ::getCompiledContainerBuilder
+   * @depends testCompiledContainer
    *
-   * @depends testContainerIsolation
+   * The point of this test is to have integration level testing.
    */
-  public function testSubsequentContainerIsolation() {
+  public function testCompiledContainerIsDestructed() {
     $this->enableModules(['system', 'user']);
     $this->assertNull($this->installConfig('user'));
   }
@@ -183,7 +181,7 @@ class KernelTestBaseTest extends KernelTestBase {
     $output = \Drupal::service('renderer')->renderRoot($build);
     $this->assertEquals('core', \Drupal::theme()->getActiveTheme()->getName());
 
-    $this->assertEquals($expected, $build['#markup']);
+    $this->assertEquals($expected, $build['#children']);
     $this->assertEquals($expected, $output);
   }
 
@@ -213,68 +211,6 @@ class KernelTestBaseTest extends KernelTestBase {
   public function testFileDefaultScheme() {
     $this->assertEquals('public', file_default_scheme());
     $this->assertEquals('public', \Drupal::config('system.file')->get('default_scheme'));
-  }
-
-  /**
-   * Tests the assumption that local time is in 'Australia/Sydney'.
-   */
-  public function testLocalTimeZone() {
-    // The 'Australia/Sydney' time zone is set in core/tests/bootstrap.php
-    $this->assertEquals('Australia/Sydney', date_default_timezone_get());
-  }
-
-  /**
-   * Tests that a test method is skipped when it requires a module not present.
-   *
-   * In order to catch checkRequirements() regressions, we have to make a new
-   * test object and run checkRequirements() here.
-   *
-   * @covers ::checkRequirements
-   * @covers ::checkModuleRequirements
-   */
-  public function testMethodRequiresModule() {
-    require __DIR__ . '/../../fixtures/KernelMissingDependentModuleMethodTest.php';
-
-    $stub_test = new KernelMissingDependentModuleMethodTest();
-    // We have to setName() to the method name we're concerned with.
-    $stub_test->setName('testRequiresModule');
-
-    // We cannot use $this->setExpectedException() because PHPUnit would skip
-    // the test before comparing the exception type.
-    try {
-      $stub_test->publicCheckRequirements();
-      $this->fail('Missing required module throws skipped test exception.');
-    }
-    catch (\PHPUnit_Framework_SkippedTestError $e) {
-      $this->assertEqual('Required modules: module_does_not_exist', $e->getMessage());
-    }
-  }
-
-  /**
-   * Tests that a test case is skipped when it requires a module not present.
-   *
-   * In order to catch checkRequirements() regressions, we have to make a new
-   * test object and run checkRequirements() here.
-   *
-   * @covers ::checkRequirements
-   * @covers ::checkModuleRequirements
-   */
-  public function testRequiresModule() {
-    require __DIR__ . '/../../fixtures/KernelMissingDependentModuleTest.php';
-
-    $stub_test = new KernelMissingDependentModuleTest();
-    // We have to setName() to the method name we're concerned with.
-    $stub_test->setName('testRequiresModule');
-
-    // We cannot use $this->setExpectedException() because PHPUnit would skip
-    // the test before comparing the exception type.
-    try {
-      $stub_test->publicCheckRequirements();
-      $this->fail('Missing required module throws skipped test exception.');
-    }
-    catch (\PHPUnit_Framework_SkippedTestError $e) {
-      $this->assertEqual('Required modules: module_does_not_exist', $e->getMessage());
-    }
   }
 
   /**

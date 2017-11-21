@@ -12,14 +12,12 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  *
  * @MigrateSource(
  *   id = "taxonomy_term",
- *   source_module = "taxonomy"
+ *   source_provider = "taxonomy"
  * )
  *
  * @deprecated in Drupal 8.3.0, intended to be removed in Drupal 9.0.0.
  *   Use \Drupal\taxonomy\Plugin\migrate\source\d6\Term or
  *   \Drupal\taxonomy\Plugin\migrate\source\d7\Term.
- *
- * @see https://www.drupal.org/node/2879193
  */
 class Term extends DrupalSqlBase {
 
