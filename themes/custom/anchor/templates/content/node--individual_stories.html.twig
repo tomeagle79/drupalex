@@ -107,3 +107,6 @@
     {% if node.field_fixed_code_display_.value == '1' %}
       {{ drupal_region('greenbar') }}
     {% endif %}
+{% if node.field_hide_title_.value == '1' %}
+  <div class="htrigger"></div>
+{% endif %}

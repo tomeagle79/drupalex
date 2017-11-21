@@ -1,0 +1,5 @@
+name: Entrants Daily
+description: Entrants Daily form.
+core: 8.x
+package: Custom
+type: module

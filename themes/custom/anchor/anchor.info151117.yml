@@ -1,0 +1,20 @@
+name: anchor
+description: Drupal 8 theme
+type: theme
+core: 8.x
+
+libraries:
+  - anchor/globals
+
+regions:
+     carousel: ‘Home Carousel'
+     home3products: ‘Home 3 Products'
+     products: ‘Products main'
+     stories: ‘Stories'
+     news: 'News'
+     faq: ‘FAQ'
+     greenbar: ‘Green bar'
+     form: 'Form'
+     registration: 'Registration'
+     entrants: 'Entrants admin'
+     registrants: 'Registrants admin'

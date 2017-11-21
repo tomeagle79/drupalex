@@ -83,9 +83,9 @@
         <p class="regular-font">
         {{ content.field_page_intro_text }}
         </p>
-        <div class="timer">
+        <!--<div class="timer">
           <p>You have  <span><span class="days"></span> days </span>,  <span><span class="hours"></span> hrs </span>,  <span><span class="minutes"></span> minutes</span>, and <span><span class="seconds"></span> seconds</span> left to enter!</p>
-        </div>
+        </div>-->
       </div>
       <div id="clouds">
         <div class="cloud x2"></div>
@@ -94,7 +94,7 @@
       </div>
       <div class="form-outer">
         <div class="form-wrap">
-        <p>{{ content.field_form_intro_text }}</p>
+        
         {{ drupal_region('form') }}
       </div>
       </div>
@@ -102,3 +102,6 @@
     {% if node.field_fixed_code_display_.value == '1' %}
       {{ drupal_region('greenbar') }}
     {% endif %}
+{% if node.field_hide_title_.value == '1' %}
+  <div class="htrigger"></div>
+{% endif %}

@@ -44,8 +44,9 @@
           <li><a href="/our-story">Our Story</a></li>
           <li><a href="/our-products/block-butters">Products</a></li>
           <span class="right">
+          <li><a href="/recipes">Recipes</a></li>
+          <li><a href="/backpack">Backpack</a></li>
           <li><a href="/coupon">Coupon</a></li>
-          <li><a href="/win">Prize draw</a></li>
           </span>
           <!-- <li class="right"><a href="">Our News</a></li> -->
         </ul>
@@ -102,8 +103,41 @@
         $(this).addClass("active").siblings().removeClass("active");;
       }
     });
-});</script>
+    if(!$('div').hasClass("htrigger")){
+	$("h1").show();
+}
+});
+</script>
    <?php } ?>
    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+       <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-100806602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Start Quantcast Tag -->
+<script type="text/javascript">
+var _qevents = _qevents || [];
+
+ (function() {
+   var elem = document.createElement('script');
+   elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+   elem.async = true;
+   elem.type = "text/javascript";
+   var scpt = document.getElementsByTagName('script')[0];
+   scpt.parentNode.insertBefore(elem, scpt);
+  })();
+
+_qevents.push({qacct: "p-AfG-BFs3WftQX"});
+
+</script>
+<noscript>
+ <img src="//pixel.quantserve.com/pixel/p-AfG-BFs3WftQX.gif?labels=_fp.event.Default" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+</noscript>
+<!-- End Quantcast tag -->
   </body>
 </html>

@@ -305,7 +305,7 @@ header{
 					display: block;
 				}
 			}
-			.right{
+			li.right{
 				@media screen and (min-width: $tab){
 					float: right;
 				}
@@ -465,7 +465,7 @@ header{
 		font-family: "gblk";
 		@include font-size(20px);
 		max-width: 700px;
-		margin: 0 auto 1em auto;
+		margin: 0 auto;
 	    	@media screen and (max-width: 640px){	
 			margin: 1em 5%;
 		}
@@ -842,7 +842,7 @@ header{
 	margin:0 auto 0 auto;
 	padding:0px!important;
 	@media screen and (min-width: $tab){
-		margin:0 auto 5em auto;
+		margin:0 auto 2em auto;
 	}
 	p{
 		max-width: 720px!important;
@@ -1509,32 +1509,12 @@ dd{
     background: red;
 }
 
-.node-57, .node-58{
-	.sub-header-inner{
-		max-height: inherit;
-		h1{
-			display: none;
-		}
-	}
-}
-
-.entrants-form, .registrationdownload-form{
+.entrants-form{
     text-align: center;
-    display: inline-block;
-    width: 40%;
-	h2{
-		@include font-size(21px);
-	}
     .form-item-from-date{
     	margin-bottom: 1em;
     }
 	input.form-date{
 		padding: 5px;
-	}
-}
-
-.node-26{
-	.content-wrap{
-		text-align: center;
 	}
 }

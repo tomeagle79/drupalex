@@ -18,3 +18,5 @@ regions:
      registration: 'Registration'
      entrants: 'Entrants admin'
      registrants: 'Registrants admin'
+     entrants_daily: 'Entrants Daily admin'
+     competition_form_fields: 'Competition Form Fields admin'

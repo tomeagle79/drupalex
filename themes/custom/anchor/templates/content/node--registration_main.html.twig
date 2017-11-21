@@ -89,7 +89,26 @@
         <div class="cloud x3"></div>
         <div class="cloud x4"></div>
       </div>
+      <div class="form-outer">
+         <div class="form-wrap">
+             <div class="small">
+             <p>Before printing your coupon, don’t forget to make sure:</p>
+
+<ul>
+	<li>Your printer is turned on.</li>
+	<li>Your paper is loaded.</li>
+	<li>Your printer is connected to your computer and switched on.</li>
+</ul>
+
+<p>If you are on your mobile or tablet, please enter your email address to receive a link to print your coupon at a later date when you have access to a computer connected to a printer.</p>
+</div>
+        {{ drupal_region('registration') }}
+      </div>
+      </div>
     </section>
     {% if node.field_fixed_code_display_.value == '1' %}
       {{ drupal_region('greenbar') }}
     {% endif %}
+{% if node.field_hide_title_.value == '1' %}
+  <div class="htrigger"></div>
+{% endif %}

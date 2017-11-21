@@ -4,6 +4,7 @@ globals:
       css/owl.theme.default.min.css: {}
       css/owl.carousel.min.css: {}
       css/styles.css: {}
+      css/extra.css: {}
   js:
     js/jquery.countdown.min.js: {}
     js/owl.carousel.min.js: {}

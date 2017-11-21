@@ -1,0 +1,7 @@
+entrants_daily.form:
+  path: '/entrants/EntrantsDailyForm'
+  defaults:
+    _title: ''	
+    _form: 'Drupal\entrants\Form\EntrantsDailyForm'
+  requirements:
+    _permission: 'access content'

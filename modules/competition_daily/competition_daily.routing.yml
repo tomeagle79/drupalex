@@ -1,0 +1,7 @@
+competition_daily.form:
+  path: '/competition_daily/CompetitionDailyForm'
+  defaults:
+    _title: ''	
+    _form: 'Drupal\competition_daily\Form\CompetitionDailyForm'
+  requirements:
+    _permission: 'access content'

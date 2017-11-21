@@ -83,7 +83,7 @@
       </div>
       <dd>{{ drupal_region('home3products') }}</dd>
 <div class="home-hub">
-        <img class="good-stuff" src="/themes/custom/anchor/images/good-stuff-hub.png" alt="">
+        <!--<img class="good-stuff" src="/themes/custom/anchor/images/good-stuff-hub.png" alt="">
         <div class="content">
           <h3>{{ content.field_good_stuff_hub_title }}</h3>
           <p>{{ content.field_good_stuff_hub_content }}</p>
@@ -91,7 +91,7 @@
             <p>You have  <span><span class="days"></span> days </span>, <span><span class="hours"></span> hrs </span>,  <span><span class="minutes"></span> minutes</span>, and <span><span class="seconds"></span> seconds</span> left to enter!</p>
           </div>
         </div>
-        <a class="sign" href="/win"><span>Enter the final prize draw here</span><img src="/themes/custom/anchor/images/sign.svg" alt="Click here to enter the final prize draw"></a>
+        <a class="sign" href="/win"><span>Enter the final prize draw here</span><img src="/themes/custom/anchor/images/sign.svg" alt="Click here to enter the final prize draw"></a>-->
       </div>
     </section>
     <section class="white tv">
@@ -104,4 +104,7 @@
 
  {% if node.field_fixed_code_display_.value == '1' %}
   {{ drupal_region('greenbar') }}
+{% endif %}
+{% if node.field_hide_title_.value == '1' %}
+  <div class="htrigger"></div>
 {% endif %}

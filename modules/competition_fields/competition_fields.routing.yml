@@ -1,0 +1,7 @@
+competition_fields.form:
+  path: '/competition_fields/CompetitionFieldsForm'
+  defaults:
+    _title: ''	
+    _form: 'Drupal\competition_fields\Form\CompetitionFieldsForm'
+  requirements:
+    _permission: 'access content'

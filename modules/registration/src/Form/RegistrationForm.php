@@ -125,8 +125,8 @@ class RegistrationForm extends FormBase {
 		//	$form_state->setErrorByName('phone', $this->t('The telephone number is invalid.'));
 		//}
 		
-		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
-		$registrants_query = $registrants_con->select('Registrants', 't')
+		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants_w2'); 
+		$registrants_query = $registrants_con->select('Registrants_w2', 't')
 
         ->fields('t', ['Id','Pin'])		
 		->condition('t.Email', $email, '=');
@@ -226,7 +226,7 @@ class RegistrationForm extends FormBase {
    	*/
     public function submitForm(array &$form, FormStateInterface $form_state) { 
 		$cc = "AN";
-		$oc = "109808";
+		$oc = "109955";
 		$longCK = "hLOg4ty8usmIN6BvDlJwcUziPCYa3jderTxK2qSbWXkF19fQnHpREAGVZ75oM";
 		$shortCK = "kynmwpzret";
 		$first_name = $form_state->getValue('first_name');
@@ -241,7 +241,7 @@ class RegistrationForm extends FormBase {
 		//	$offers = "Yes";
 		//}
 		        
-    	$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 		
+    	$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants_w2'); 		
 		
 		$uniquePIN = "false";
 		$i = 0;
@@ -256,7 +256,7 @@ do {
 			$part2 = sprintf("%'05d", rand(0,99999));
 			$randomPIN = $part1 . $part2;
 			// check for duplicate pins in the database
-			$registrants_pin_query = $registrants_con->select('Registrants', 't')
+			$registrants_pin_query = $registrants_con->select('Registrants_w2', 't')
         	->fields('t', ['Id'])		
 			->condition('t.Pin', $randomPIN, '=');
     		$result = $registrants_pin_query->execute()->fetchAll();
@@ -272,8 +272,8 @@ do {
 			}
 			//Overwrite with used pin
 
-		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants'); 
-		$registrants_query = $registrants_con->select('Registrants', 't')
+		$registrants_con = \Drupal\Core\Database\Database::getConnection('default','registrants_w2'); 
+		$registrants_query = $registrants_con->select('Registrants_w2', 't')
 
         ->fields('t', ['Id','Pin'])		
 		->condition('t.Email', $email, '=');
@@ -319,7 +319,7 @@ do {
 		if($usedPin == ""){
 		
 
-		$registrants_query = $registrants_con->insert('Registrants')
+		$registrants_query = $registrants_con->insert('Registrants_w2')
   			->fields([
   				'Date_Of_Entry' => $thedatetime,
   				'First_Name' => $first_name,
@@ -333,7 +333,7 @@ do {
 		}
 
 		// READY TO PRINT - redirect to Quotient to print the coupon
-		$locRedirect = "http://bricks.couponmicrosite.net/javabricksweb/index.aspx?o=" . $oc . "&c=" . $cc . "&p=" . $randomPIN . "&cpt=" . $contentCPT . "&ct=" . strtoupper($first_name) . "%20" . strtoupper($last_name);
+		$locRedirect = "http://bricks.couponmicrosite.net/javabricksweb/index.aspx?o=" . $oc . "&c=" . $cc . "&p=" . $randomPIN . "&cpt=" . $contentCPT . "&ct=" . strtoupper($first_name) . "+" . strtoupper($last_name);
 
 		$url = new TrustedRedirectResponse($locRedirect);			
 		$form_state->setResponse($url);			

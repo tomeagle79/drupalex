@@ -1,0 +1,5 @@
+name: registration_download
+description: Registration Download form.
+core: 8.x
+package: Custom
+type: module

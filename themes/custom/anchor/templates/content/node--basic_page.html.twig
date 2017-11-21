@@ -80,9 +80,14 @@
     </section>
     <div class="content-wrap basic-wrap">
     {{ content.body}}
+    {{ drupal_region('entrants_daily') }}
     {{ drupal_region('entrants') }}
     {{ drupal_region('registrants') }}
+	{{ drupal_region('competition_form_fields') }}
     </div>
     {% if node.field_fixed_code_display_.value == '1' %}
       {{ drupal_region('greenbar') }}
     {% endif %}
+{% if node.field_hide_title_.value == '1' %}
+  <div class="htrigger"></div>
+{% endif %}
