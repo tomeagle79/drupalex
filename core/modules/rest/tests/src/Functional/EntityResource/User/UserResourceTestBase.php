@@ -3,14 +3,11 @@
 namespace Drupal\Tests\rest\Functional\EntityResource\User;
 
 use Drupal\Core\Url;
-use Drupal\Tests\rest\Functional\BcTimestampNormalizerUnixTestTrait;
 use Drupal\Tests\rest\Functional\EntityResource\EntityResourceTestBase;
 use Drupal\user\Entity\User;
 use GuzzleHttp\RequestOptions;
 
 abstract class UserResourceTestBase extends EntityResourceTestBase {
-
-  use BcTimestampNormalizerUnixTestTrait;
 
   /**
    * {@inheritdoc}
@@ -101,10 +98,14 @@ abstract class UserResourceTestBase extends EntityResourceTestBase {
         ],
       ],
       'created' => [
-        $this->formatExpectedTimestampItemValues(123456789),
+        [
+          'value' => 123456789,
+        ],
       ],
       'changed' => [
-        $this->formatExpectedTimestampItemValues($this->entity->getChangedTime()),
+        [
+          'value' => $this->entity->getChangedTime(),
+        ],
       ],
       'default_langcode' => [
         [
@@ -121,7 +122,7 @@ abstract class UserResourceTestBase extends EntityResourceTestBase {
     return [
       'name' => [
         [
-          'value' => 'Dramallama',
+          'value' => 'Dramallama ' . $this->randomMachineName(),
         ],
       ],
     ];
@@ -138,11 +139,11 @@ abstract class UserResourceTestBase extends EntityResourceTestBase {
 
     $this->initAuthentication();
     $this->provisionEntityResource();
+    $this->setUpAuthorization('PATCH');
 
     /** @var \Drupal\user\UserInterface $user */
     $user = static::$auth ? $this->account : User::load(0);
-    // @todo Remove the array_diff_key() call in https://www.drupal.org/node/2821077.
-    $original_normalization = array_diff_key($this->serializer->normalize($user, static::$format), ['created' => TRUE, 'changed' => TRUE, 'name' => TRUE]);
+    $original_normalization = array_diff_key($this->serializer->normalize($user, static::$format), ['changed' => TRUE]);
 
 
     // Since this test must be performed by the user that is being modified,
@@ -204,52 +205,9 @@ abstract class UserResourceTestBase extends EntityResourceTestBase {
 
 
     // Verify that we can log in with the new password.
-    $this->assertRpcLogin($user->getAccountName(), $new_password);
-
-
-    // Update password in $this->account, prepare for future requests.
-    $this->account->passRaw = $new_password;
-    $this->initAuthentication();
-    $request_options = [
-      RequestOptions::HEADERS => ['Content-Type' => static::$mimeType],
-    ];
-    $request_options = array_merge_recursive($request_options, $this->getAuthenticationRequestOptions('PATCH'));
-
-
-    // Test case 3: changing name.
-    $normalization = $original_normalization;
-    $normalization['name'] = [['value' => 'Cooler Llama']];
-    $request_options[RequestOptions::BODY] = $this->serializer->encode($normalization, static::$format);
-
-
-    // DX: 403 when modifying username without required permission.
-    $response = $this->request('PATCH', $url, $request_options);
-    $this->assertResourceErrorResponse(403, "Access denied on updating field 'name'.", $response);
-
-
-    $this->grantPermissionsToTestedRole(['change own username']);
-
-
-    // 200 for well-formed request.
-    $response = $this->request('PATCH', $url, $request_options);
-    $this->assertResourceResponse(200, FALSE, $response);
-
-    // Verify that we can log in with the new username.
-    $this->assertRpcLogin('Cooler Llama', $new_password);
-  }
-
-  /**
-   * Verifies that logging in with the given username and password works.
-   *
-   * @param string $username
-   *   The username to log in with.
-   * @param string $password
-   *   The password to log in with.
-   */
-  protected function assertRpcLogin($username, $password) {
     $request_body = [
-      'name' => $username,
-      'pass' => $password,
+      'name' => $user->getAccountName(),
+      'pass' => $new_password,
     ];
     $request_options = [
       RequestOptions::HEADERS => [],

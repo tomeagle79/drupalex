@@ -78,13 +78,6 @@ class Row {
   protected $isStub = FALSE;
 
   /**
-   * The empty destination properties.
-   *
-   * @var array
-   */
-  protected $emptyDestinationProperties = [];
-
-  /**
    * Constructs a \Drupal\Migrate\Row object.
    *
    * @param array $values
@@ -113,11 +106,10 @@ class Row {
    * Retrieves the values of the source identifiers.
    *
    * @return array
-   *   An array containing the values of the source identifiers. Returns values
-   *   in the same order as defined in $this->sourceIds.
+   *   An array containing the values of the source identifiers.
    */
   public function getSourceIdValues() {
-    return array_merge($this->sourceIds, array_intersect_key($this->source, $this->sourceIds));
+    return array_intersect_key($this->source, $this->sourceIds);
   }
 
   /**
@@ -234,26 +226,6 @@ class Row {
   public function removeDestinationProperty($property) {
     unset($this->rawDestination[$property]);
     NestedArray::unsetValue($this->destination, explode(static::PROPERTY_SEPARATOR, $property));
-  }
-
-  /**
-   * Sets a destination to be empty.
-   *
-   * @param string $property
-   *   The destination property.
-   */
-  public function setEmptyDestinationProperty($property) {
-    $this->emptyDestinationProperties[] = $property;
-  }
-
-  /**
-   * Gets the empty destination properties.
-   *
-   * @return array
-   *   An array of destination properties.
-   */
-  public function getEmptyDestinationProperties() {
-    return $this->emptyDestinationProperties;
   }
 
   /**
