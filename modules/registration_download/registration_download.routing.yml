@@ -1,7 +1,0 @@
-registrationdownload.form:
-  path: '/registration_downloads/RegistrationdownloadForm'
-  defaults:
-    _title: ''	
-    _form: 'Drupal\registration_download\Form\RegistrationdownloadForm'
-  requirements:
-    _permission: 'access content'

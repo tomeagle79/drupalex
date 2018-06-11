@@ -1,7 +1,0 @@
-entrants.form:
-  path: '/entrants/EntrantsForm'
-  defaults:
-    _title: ''	
-    _form: 'Drupal\entrants\Form\EntrantsForm'
-  requirements:
-    _permission: 'access content'

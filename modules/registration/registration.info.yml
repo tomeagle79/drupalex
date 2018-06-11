@@ -1,5 +1,0 @@
-name: Registration
-description: Registration form.
-core: 8.x
-package: Custom
-type: module
