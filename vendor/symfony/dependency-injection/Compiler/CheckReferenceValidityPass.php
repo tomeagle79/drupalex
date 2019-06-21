@@ -11,16 +11,21 @@
 
 namespace Symfony\Component\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
+use Symfony\Component\DependencyInjection\Exception\ScopeCrossingInjectionException;
+use Symfony\Component\DependencyInjection\Exception\ScopeWideningInjectionException;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * Checks the validity of references.
  *
  * The following checks are performed by this pass:
  * - target definitions are not abstract
+ * - target definitions are of equal or wider scope
+ * - target definitions are in the same scope hierarchy
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
@@ -28,15 +33,28 @@ class CheckReferenceValidityPass implements CompilerPassInterface
 {
     private $container;
     private $currentId;
+    private $currentScope;
+    private $currentScopeAncestors;
+    private $currentScopeChildren;
 
     /**
      * Processes the ContainerBuilder to validate References.
-     *
-     * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)
     {
         $this->container = $container;
+
+        $children = $this->container->getScopeChildren(false);
+        $ancestors = array();
+
+        $scopes = $this->container->getScopes(false);
+        foreach ($scopes as $name => $parent) {
+            $ancestors[$name] = array($parent);
+
+            while (isset($scopes[$parent])) {
+                $ancestors[$name][] = $parent = $scopes[$parent];
+            }
+        }
 
         foreach ($container->getDefinitions() as $id => $definition) {
             if ($definition->isSynthetic() || $definition->isAbstract()) {
@@ -44,6 +62,15 @@ class CheckReferenceValidityPass implements CompilerPassInterface
             }
 
             $this->currentId = $id;
+            $this->currentScope = $scope = $definition->getScope(false);
+
+            if (ContainerInterface::SCOPE_CONTAINER === $scope) {
+                $this->currentScopeChildren = array_keys($scopes);
+                $this->currentScopeAncestors = array();
+            } elseif (ContainerInterface::SCOPE_PROTOTYPE !== $scope) {
+                $this->currentScopeChildren = isset($children[$scope]) ? $children[$scope] : array();
+                $this->currentScopeAncestors = isset($ancestors[$scope]) ? $ancestors[$scope] : array();
+            }
 
             $this->validateReferences($definition->getArguments());
             $this->validateReferences($definition->getMethodCalls());
@@ -56,25 +83,57 @@ class CheckReferenceValidityPass implements CompilerPassInterface
      *
      * @param array $arguments An array of Reference objects
      *
-     * @throws RuntimeException when there is a reference to an abstract definition.
+     * @throws RuntimeException when there is a reference to an abstract definition
      */
     private function validateReferences(array $arguments)
     {
         foreach ($arguments as $argument) {
-            if (is_array($argument)) {
+            if (\is_array($argument)) {
                 $this->validateReferences($argument);
             } elseif ($argument instanceof Reference) {
                 $targetDefinition = $this->getDefinition((string) $argument);
 
                 if (null !== $targetDefinition && $targetDefinition->isAbstract()) {
-                    throw new RuntimeException(sprintf(
-                        'The definition "%s" has a reference to an abstract definition "%s". '
-                       .'Abstract definitions cannot be the target of references.',
-                       $this->currentId,
-                       $argument
-                    ));
+                    throw new RuntimeException(sprintf('The definition "%s" has a reference to an abstract definition "%s". Abstract definitions cannot be the target of references.', $this->currentId, $argument));
                 }
+
+                $this->validateScope($argument, $targetDefinition);
             }
+        }
+    }
+
+    /**
+     * Validates the scope of a single Reference.
+     *
+     * @throws ScopeWideningInjectionException when the definition references a service of a narrower scope
+     * @throws ScopeCrossingInjectionException when the definition references a service of another scope hierarchy
+     */
+    private function validateScope(Reference $reference, Definition $definition = null)
+    {
+        if (ContainerInterface::SCOPE_PROTOTYPE === $this->currentScope) {
+            return;
+        }
+
+        if (!$reference->isStrict(false)) {
+            return;
+        }
+
+        if (null === $definition) {
+            return;
+        }
+
+        if ($this->currentScope === $scope = $definition->getScope(false)) {
+            return;
+        }
+
+        $id = (string) $reference;
+
+        if (\in_array($scope, $this->currentScopeChildren, true)) {
+            throw new ScopeWideningInjectionException($this->currentId, $this->currentScope, $id, $scope);
+        }
+
+        if (!\in_array($scope, $this->currentScopeAncestors, true)) {
+            throw new ScopeCrossingInjectionException($this->currentId, $this->currentScope, $id, $scope);
         }
     }
 

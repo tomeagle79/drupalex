@@ -1,15 +1,11 @@
 CHANGELOG
 =========
 
-3.1.0
------
+2.8.44
+------
 
- * Added support for creating `JsonResponse` with a string of JSON data
-
-3.0.0
------
-
- * The precedence of parameters returned from `Request::get()` changed from "GET, PATH, BODY" to "PATH, GET, BODY"
+ * [BC BREAK] Support for the IIS-only `X_ORIGINAL_URL` and `X_REWRITE_URL`
+   HTTP headers has been dropped for security reasons.
 
 2.8.0
 -----

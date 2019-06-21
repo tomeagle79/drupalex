@@ -11,9 +11,9 @@
 
 namespace Symfony\Component\HttpKernel;
 
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
-use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
  * The Kernel is the heart of the Symfony system.
@@ -33,8 +33,6 @@ interface KernelInterface extends HttpKernelInterface, \Serializable
 
     /**
      * Loads the container configuration.
-     *
-     * @param LoaderInterface $loader A LoaderInterface instance
      */
     public function registerContainerConfiguration(LoaderInterface $loader);
 
@@ -56,6 +54,17 @@ interface KernelInterface extends HttpKernelInterface, \Serializable
      * @return BundleInterface[] An array of registered bundle instances
      */
     public function getBundles();
+
+    /**
+     * Checks if a given class name belongs to an active bundle.
+     *
+     * @param string $class A class name
+     *
+     * @return bool true if the class belongs to an active bundle, false otherwise
+     *
+     * @deprecated since version 2.6, to be removed in 3.0.
+     */
+    public function isClassInActiveBundle($class);
 
     /**
      * Returns a bundle and optionally its descendants by its name.
@@ -130,7 +139,7 @@ interface KernelInterface extends HttpKernelInterface, \Serializable
     /**
      * Gets the current container.
      *
-     * @return ContainerInterface A ContainerInterface instance
+     * @return ContainerInterface|null A ContainerInterface instance or null when the Kernel is shutdown
      */
     public function getContainer();
 

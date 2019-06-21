@@ -38,9 +38,6 @@ class RouteCollectionBuilder
     private $methods;
     private $resources = array();
 
-    /**
-     * @param LoaderInterface $loader
-     */
     public function __construct(LoaderInterface $loader = null)
     {
         $this->loader = $loader;
@@ -49,7 +46,7 @@ class RouteCollectionBuilder
     /**
      * Import an external routing resource and returns the RouteCollectionBuilder.
      *
-     *  $routes->import('blog.yml', '/blog');
+     *     $routes->import('blog.yml', '/blog');
      *
      * @param mixed       $resource
      * @param string|null $prefix
@@ -272,6 +269,7 @@ class RouteCollectionBuilder
                 $route->setDefaults(array_merge($this->defaults, $route->getDefaults()));
                 $route->setOptions(array_merge($this->options, $route->getOptions()));
 
+                // we're extra careful here to avoid re-setting deprecated _method and _scheme
                 foreach ($this->requirements as $key => $val) {
                     if (!$route->hasRequirement($key)) {
                         $route->setRequirement($key, $val);
@@ -311,10 +309,10 @@ class RouteCollectionBuilder
 
                 $routeCollection->addCollection($subCollection);
             }
+        }
 
-            foreach ($this->resources as $resource) {
-                $routeCollection->addResource($resource);
-            }
+        foreach ($this->resources as $resource) {
+            $routeCollection->addResource($resource);
         }
 
         return $routeCollection;

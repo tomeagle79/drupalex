@@ -44,13 +44,16 @@ class ClassCollectionLoader
         self::$loaded[$name] = true;
 
         if ($adaptive) {
-            $declared = array_merge(get_declared_classes(), get_declared_interfaces(), get_declared_traits());
+            $declared = array_merge(get_declared_classes(), get_declared_interfaces());
+            if (\function_exists('get_declared_traits')) {
+                $declared = array_merge($declared, get_declared_traits());
+            }
 
             // don't include already declared classes
             $classes = array_diff($classes, $declared);
 
             // the cache is different depending on which classes are already declared
-            $name = $name.'-'.substr(hash('sha256', implode('|', $classes)), 0, 5);
+            $name .= '-'.substr(hash('sha256', implode('|', $classes)), 0, 5);
         }
 
         $classes = array_unique($classes);
@@ -59,7 +62,7 @@ class ClassCollectionLoader
         if (!is_dir($cacheDir) && !@mkdir($cacheDir, 0777, true) && !is_dir($cacheDir)) {
             throw new \RuntimeException(sprintf('Class Collection Loader was not able to create directory "%s"', $cacheDir));
         }
-        $cacheDir = rtrim(realpath($cacheDir) ?: $cacheDir, '/'.DIRECTORY_SEPARATOR);
+        $cacheDir = rtrim(realpath($cacheDir) ?: $cacheDir, '/'.\DIRECTORY_SEPARATOR);
         $cache = $cacheDir.'/'.$name.$extension;
 
         // auto-reload
@@ -95,39 +98,10 @@ class ClassCollectionLoader
             return;
         }
         if (!$adaptive) {
-            $declared = array_merge(get_declared_classes(), get_declared_interfaces(), get_declared_traits());
-        }
-
-        $files = self::inline($classes, $cache, $declared);
-
-        if ($autoReload) {
-            // save the resources
-            self::writeCacheFile($metadata, serialize(array(array_values($files), $classes)));
-        }
-    }
-
-    /**
-     * Generates a file where classes and their parents are inlined.
-     *
-     * @param array  $classes  An array of classes to load
-     * @param string $cache    The file where classes are inlined
-     * @param array  $excluded An array of classes that won't be inlined
-     *
-     * @return array The source map of inlined classes, with classes as keys and files as values
-     *
-     * @throws \RuntimeException When class can't be loaded
-     */
-    public static function inline($classes, $cache, array $excluded)
-    {
-        $declared = array();
-        foreach (self::getOrderedClasses($excluded) as $class) {
-            $declared[$class->getName()] = true;
-        }
-
-        // cache the core classes
-        $cacheDir = dirname($cache);
-        if (!is_dir($cacheDir) && !@mkdir($cacheDir, 0777, true) && !is_dir($cacheDir)) {
-            throw new \RuntimeException(sprintf('Class Collection Loader was not able to create directory "%s"', $cacheDir));
+            $declared = array_merge(get_declared_classes(), get_declared_interfaces());
+            if (\function_exists('get_declared_traits')) {
+                $declared = array_merge($declared, get_declared_traits());
+            }
         }
 
         $spacesRegex = '(?:\s*+(?:(?:\#|//)[^\n]*+\n|/\*(?:(?<!\*/).)++)?+)*+';
@@ -140,20 +114,19 @@ class ClassCollectionLoader
 REGEX;
         $dontInlineRegex = str_replace('.', $spacesRegex, $dontInlineRegex);
 
-        $cacheDir = explode('/', str_replace(DIRECTORY_SEPARATOR, '/', $cacheDir));
+        $cacheDir = explode('/', str_replace(\DIRECTORY_SEPARATOR, '/', $cacheDir));
         $files = array();
         $content = '';
         foreach (self::getOrderedClasses($classes) as $class) {
-            if (isset($declared[$class->getName()])) {
+            if (\in_array($class->getName(), $declared)) {
                 continue;
             }
-            $declared[$class->getName()] = true;
 
-            $files[$class->getName()] = $file = $class->getFileName();
+            $files[] = $file = $class->getFileName();
             $c = file_get_contents($file);
 
             if (preg_match($dontInlineRegex, $c)) {
-                $file = explode('/', str_replace(DIRECTORY_SEPARATOR, '/', $file));
+                $file = explode('/', str_replace(\DIRECTORY_SEPARATOR, '/', $file));
 
                 for ($i = 0; isset($file[$i], $cacheDir[$i]); ++$i) {
                     if ($file[$i] !== $cacheDir[$i]) {
@@ -163,8 +136,8 @@ REGEX;
                 if (1 >= $i) {
                     $file = var_export(implode('/', $file), true);
                 } else {
-                    $file = array_slice($file, $i);
-                    $file = str_repeat('../', count($cacheDir) - $i).implode('/', $file);
+                    $file = \array_slice($file, $i);
+                    $file = str_repeat('../', \count($cacheDir) - $i).implode('/', $file);
                     $file = '__DIR__.'.var_export('/'.$file, true);
                 }
 
@@ -185,7 +158,10 @@ REGEX;
         }
         self::writeCacheFile($cache, '<?php '.$content);
 
-        return $files;
+        if ($autoReload) {
+            // save the resources
+            self::writeCacheFile($metadata, serialize(array($files, $classes)));
+        }
     }
 
     /**
@@ -197,7 +173,7 @@ REGEX;
      */
     public static function fixNamespaceDeclarations($source)
     {
-        if (!function_exists('token_get_all') || !self::$useTokenizer) {
+        if (!\function_exists('token_get_all') || !self::$useTokenizer) {
             if (preg_match('/(^|\s)namespace(.*?)\s*;/', $source)) {
                 $source = preg_replace('/(^|\s)namespace(.*?)\s*;/', "$1namespace$2\n{", $source)."}\n";
             }
@@ -214,7 +190,7 @@ REGEX;
             $token = $tokens[$i];
             if (!isset($token[1]) || 'b"' === $token) {
                 $rawChunk .= $token;
-            } elseif (in_array($token[0], array(T_COMMENT, T_DOC_COMMENT))) {
+            } elseif (\in_array($token[0], array(T_COMMENT, T_DOC_COMMENT))) {
                 // strip comments
                 continue;
             } elseif (T_NAMESPACE === $token[0]) {
@@ -224,7 +200,7 @@ REGEX;
                 $rawChunk .= $token[1];
 
                 // namespace name and whitespaces
-                while (isset($tokens[++$i][1]) && in_array($tokens[$i][0], array(T_WHITESPACE, T_NS_SEPARATOR, T_STRING))) {
+                while (isset($tokens[++$i][1]) && \in_array($tokens[$i][0], array(T_WHITESPACE, T_NS_SEPARATOR, T_STRING))) {
                     $rawChunk .= $tokens[$i][1];
                 }
                 if ('{' === $tokens[$i]) {
@@ -239,7 +215,7 @@ REGEX;
                 do {
                     $token = $tokens[++$i];
                     $output .= isset($token[1]) && 'b"' !== $token ? $token[1] : $token;
-                } while ($token[0] !== T_END_HEREDOC);
+                } while (T_END_HEREDOC !== $token[0]);
                 $output .= "\n";
                 $rawChunk = '';
             } elseif (T_CONSTANT_ENCAPSED_STRING === $token[0]) {
@@ -256,7 +232,7 @@ REGEX;
 
         $output .= self::compressCode($rawChunk);
 
-        if (PHP_VERSION_ID >= 70000) {
+        if (\PHP_VERSION_ID >= 70000) {
             // PHP 7 memory manager will not release after token_get_all(), see https://bugs.php.net/70098
             unset($tokens, $rawChunk);
             gc_mem_caches();
@@ -299,7 +275,7 @@ REGEX;
      */
     private static function writeCacheFile($file, $content)
     {
-        $dir = dirname($file);
+        $dir = \dirname($file);
         if (!is_writable($dir)) {
             throw new \RuntimeException(sprintf('Cache directory "%s" is not writable.', $dir));
         }
@@ -317,8 +293,6 @@ REGEX;
 
     /**
      * Gets an ordered array of passed classes including all their dependencies.
-     *
-     * @param array $classes
      *
      * @return \ReflectionClass[] An array of sorted \ReflectionClass instances (dependencies added if needed)
      *
@@ -359,10 +333,12 @@ REGEX;
 
         $traits = array();
 
-        foreach ($classes as $c) {
-            foreach (self::resolveDependencies(self::computeTraitDeps($c), $c) as $trait) {
-                if ($trait !== $c) {
-                    $traits[] = $trait;
+        if (method_exists('ReflectionClass', 'getTraits')) {
+            foreach ($classes as $c) {
+                foreach (self::resolveDependencies(self::computeTraitDeps($c), $c) as $trait) {
+                    if ($trait !== $c) {
+                        $traits[] = $trait;
+                    }
                 }
             }
         }

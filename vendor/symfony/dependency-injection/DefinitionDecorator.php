@@ -77,6 +77,36 @@ class DefinitionDecorator extends Definition
     /**
      * {@inheritdoc}
      */
+    public function setFactoryClass($class)
+    {
+        $this->changes['factory_class'] = true;
+
+        return parent::setFactoryClass($class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFactoryMethod($method)
+    {
+        $this->changes['factory_method'] = true;
+
+        return parent::setFactoryMethod($method);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFactoryService($service, $triggerDeprecationError = true)
+    {
+        $this->changes['factory_service'] = true;
+
+        return parent::setFactoryService($service, $triggerDeprecationError);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setConfigurator($callable)
     {
         $this->changes['configurator'] = true;
@@ -162,7 +192,7 @@ class DefinitionDecorator extends Definition
             return $this->arguments['index_'.$index];
         }
 
-        $lastIndex = count(array_filter(array_keys($this->arguments), 'is_int')) - 1;
+        $lastIndex = \count(array_filter(array_keys($this->arguments), 'is_int')) - 1;
 
         if ($index < 0 || $index > $lastIndex) {
             throw new OutOfBoundsException(sprintf('The index "%d" is not in the range [0, %d].', $index, $lastIndex));
@@ -188,7 +218,7 @@ class DefinitionDecorator extends Definition
      */
     public function replaceArgument($index, $value)
     {
-        if (!is_int($index)) {
+        if (!\is_int($index)) {
             throw new InvalidArgumentException('$index must be an integer.');
         }
 

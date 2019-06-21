@@ -11,18 +11,17 @@
 
 namespace Symfony\Component\DependencyInjection\Loader;
 
-use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
-use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser as YamlParser;
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\ExpressionLanguage\Expression;
 
 /**
  * YamlFileLoader loads YAML files service definitions.
@@ -33,30 +32,6 @@ use Symfony\Component\ExpressionLanguage\Expression;
  */
 class YamlFileLoader extends FileLoader
 {
-    private static $keywords = array(
-        'alias' => 'alias',
-        'parent' => 'parent',
-        'class' => 'class',
-        'shared' => 'shared',
-        'synthetic' => 'synthetic',
-        'lazy' => 'lazy',
-        'public' => 'public',
-        'abstract' => 'abstract',
-        'deprecated' => 'deprecated',
-        'factory' => 'factory',
-        'file' => 'file',
-        'arguments' => 'arguments',
-        'properties' => 'properties',
-        'configurator' => 'configurator',
-        'calls' => 'calls',
-        'tags' => 'tags',
-        'decorates' => 'decorates',
-        'decoration_inner_name' => 'decoration_inner_name',
-        'decoration_priority' => 'decoration_priority',
-        'autowire' => 'autowire',
-        'autowiring_types' => 'autowiring_types',
-    );
-
     private $yamlParser;
 
     /**
@@ -80,7 +55,7 @@ class YamlFileLoader extends FileLoader
 
         // parameters
         if (isset($content['parameters'])) {
-            if (!is_array($content['parameters'])) {
+            if (!\is_array($content['parameters'])) {
                 throw new InvalidArgumentException(sprintf('The "parameters" key should contain an array in %s. Check your YAML syntax.', $resource));
             }
 
@@ -101,7 +76,7 @@ class YamlFileLoader extends FileLoader
      */
     public function supports($resource, $type = null)
     {
-        return is_string($resource) && in_array(pathinfo($resource, PATHINFO_EXTENSION), array('yml', 'yaml'), true);
+        return \is_string($resource) && \in_array(pathinfo($resource, PATHINFO_EXTENSION), array('yml', 'yaml'), true);
     }
 
     /**
@@ -116,13 +91,13 @@ class YamlFileLoader extends FileLoader
             return;
         }
 
-        if (!is_array($content['imports'])) {
+        if (!\is_array($content['imports'])) {
             throw new InvalidArgumentException(sprintf('The "imports" key should contain an array in %s. Check your YAML syntax.', $file));
         }
 
-        $defaultDirectory = dirname($file);
+        $defaultDirectory = \dirname($file);
         foreach ($content['imports'] as $import) {
-            if (!is_array($import)) {
+            if (!\is_array($import)) {
                 throw new InvalidArgumentException(sprintf('The values in the "imports" key should be arrays in %s. Check your YAML syntax.', $file));
             }
 
@@ -143,7 +118,7 @@ class YamlFileLoader extends FileLoader
             return;
         }
 
-        if (!is_array($content['services'])) {
+        if (!\is_array($content['services'])) {
             throw new InvalidArgumentException(sprintf('The "services" key should contain an array in %s. Check your YAML syntax.', $file));
         }
 
@@ -163,27 +138,19 @@ class YamlFileLoader extends FileLoader
      */
     private function parseDefinition($id, $service, $file)
     {
-        if (is_string($service) && 0 === strpos($service, '@')) {
+        if (\is_string($service) && 0 === strpos($service, '@')) {
             $this->container->setAlias($id, substr($service, 1));
 
             return;
         }
 
-        if (!is_array($service)) {
-            throw new InvalidArgumentException(sprintf('A service definition must be an array or a string starting with "@" but %s found for service "%s" in %s. Check your YAML syntax.', gettype($service), $id, $file));
+        if (!\is_array($service)) {
+            throw new InvalidArgumentException(sprintf('A service definition must be an array or a string starting with "@" but %s found for service "%s" in %s. Check your YAML syntax.', \gettype($service), $id, $file));
         }
-
-        static::checkDefinition($id, $service, $file);
 
         if (isset($service['alias'])) {
             $public = !array_key_exists('public', $service) || (bool) $service['public'];
             $this->container->setAlias($id, new Alias($service['alias'], $public));
-
-            foreach ($service as $key => $value) {
-                if (!in_array($key, array('alias', 'public'))) {
-                    @trigger_error(sprintf('The configuration key "%s" is unsupported for the service "%s" which is defined as an alias in "%s". Allowed configuration keys for service aliases are "alias" and "public". The YamlFileLoader will raise an exception in Symfony 4.0, instead of silently ignoring unsupported attributes.', $key, $id, $file), E_USER_DEPRECATED);
-                }
-            }
 
             return;
         }
@@ -202,8 +169,20 @@ class YamlFileLoader extends FileLoader
             $definition->setShared($service['shared']);
         }
 
+        if (isset($service['scope'])) {
+            if ('request' !== $id) {
+                @trigger_error(sprintf('The "scope" key of service "%s" in file "%s" is deprecated since Symfony 2.8 and will be removed in 3.0.', $id, $file), E_USER_DEPRECATED);
+            }
+            $definition->setScope($service['scope'], false);
+        }
+
         if (isset($service['synthetic'])) {
             $definition->setSynthetic($service['synthetic']);
+        }
+
+        if (isset($service['synchronized'])) {
+            @trigger_error(sprintf('The "synchronized" key of service "%s" in file "%s" is deprecated since Symfony 2.7 and will be removed in 3.0.', $id, $file), E_USER_DEPRECATED);
+            $definition->setSynchronized($service['synchronized'], 'request' !== $id);
         }
 
         if (isset($service['lazy'])) {
@@ -223,7 +202,31 @@ class YamlFileLoader extends FileLoader
         }
 
         if (isset($service['factory'])) {
-            $definition->setFactory($this->parseCallable($service['factory'], 'factory', $id, $file));
+            if (\is_string($service['factory'])) {
+                if (false !== strpos($service['factory'], ':') && false === strpos($service['factory'], '::')) {
+                    $parts = explode(':', $service['factory']);
+                    $definition->setFactory(array($this->resolveServices('@'.$parts[0]), $parts[1]));
+                } else {
+                    $definition->setFactory($service['factory']);
+                }
+            } else {
+                $definition->setFactory(array($this->resolveServices($service['factory'][0]), $service['factory'][1]));
+            }
+        }
+
+        if (isset($service['factory_class'])) {
+            @trigger_error(sprintf('The "factory_class" key of service "%s" in file "%s" is deprecated since Symfony 2.6 and will be removed in 3.0. Use "factory" instead.', $id, $file), E_USER_DEPRECATED);
+            $definition->setFactoryClass($service['factory_class']);
+        }
+
+        if (isset($service['factory_method'])) {
+            @trigger_error(sprintf('The "factory_method" key of service "%s" in file "%s" is deprecated since Symfony 2.6 and will be removed in 3.0. Use "factory" instead.', $id, $file), E_USER_DEPRECATED);
+            $definition->setFactoryMethod($service['factory_method']);
+        }
+
+        if (isset($service['factory_service'])) {
+            @trigger_error(sprintf('The "factory_service" key of service "%s" in file "%s" is deprecated since Symfony 2.6 and will be removed in 3.0. Use "factory" instead.', $id, $file), E_USER_DEPRECATED);
+            $definition->setFactoryService($service['factory_service']);
         }
 
         if (isset($service['file'])) {
@@ -239,11 +242,15 @@ class YamlFileLoader extends FileLoader
         }
 
         if (isset($service['configurator'])) {
-            $definition->setConfigurator($this->parseCallable($service['configurator'], 'configurator', $id, $file));
+            if (\is_string($service['configurator'])) {
+                $definition->setConfigurator($service['configurator']);
+            } else {
+                $definition->setConfigurator(array($this->resolveServices($service['configurator'][0]), $service['configurator'][1]));
+            }
         }
 
         if (isset($service['calls'])) {
-            if (!is_array($service['calls'])) {
+            if (!\is_array($service['calls'])) {
                 throw new InvalidArgumentException(sprintf('Parameter "calls" must be an array for service "%s" in %s. Check your YAML syntax.', $id, $file));
             }
 
@@ -261,12 +268,12 @@ class YamlFileLoader extends FileLoader
         }
 
         if (isset($service['tags'])) {
-            if (!is_array($service['tags'])) {
+            if (!\is_array($service['tags'])) {
                 throw new InvalidArgumentException(sprintf('Parameter "tags" must be an array for service "%s" in %s. Check your YAML syntax.', $id, $file));
             }
 
             foreach ($service['tags'] as $tag) {
-                if (!is_array($tag)) {
+                if (!\is_array($tag)) {
                     throw new InvalidArgumentException(sprintf('A "tags" entry must be an array for service "%s" in %s. Check your YAML syntax.', $id, $file));
                 }
 
@@ -274,7 +281,7 @@ class YamlFileLoader extends FileLoader
                     throw new InvalidArgumentException(sprintf('A "tags" entry is missing a "name" key for service "%s" in %s.', $id, $file));
                 }
 
-                if (!is_string($tag['name']) || '' === $tag['name']) {
+                if (!\is_string($tag['name']) || '' === $tag['name']) {
                     throw new InvalidArgumentException(sprintf('The tag name for service "%s" in %s must be a non-empty string.', $id, $file));
                 }
 
@@ -306,15 +313,15 @@ class YamlFileLoader extends FileLoader
         }
 
         if (isset($service['autowiring_types'])) {
-            if (is_string($service['autowiring_types'])) {
+            if (\is_string($service['autowiring_types'])) {
                 $definition->addAutowiringType($service['autowiring_types']);
             } else {
-                if (!is_array($service['autowiring_types'])) {
+                if (!\is_array($service['autowiring_types'])) {
                     throw new InvalidArgumentException(sprintf('Parameter "autowiring_types" must be a string or an array for service "%s" in %s. Check your YAML syntax.', $id, $file));
                 }
 
                 foreach ($service['autowiring_types'] as $autowiringType) {
-                    if (!is_string($autowiringType)) {
+                    if (!\is_string($autowiringType)) {
                         throw new InvalidArgumentException(sprintf('A "autowiring_types" attribute must be of type string for service "%s" in %s. Check your YAML syntax.', $id, $file));
                     }
 
@@ -324,45 +331,6 @@ class YamlFileLoader extends FileLoader
         }
 
         $this->container->setDefinition($id, $definition);
-    }
-
-    /**
-     * Parses a callable.
-     *
-     * @param string|array $callable  A callable
-     * @param string       $parameter A parameter (e.g. 'factory' or 'configurator')
-     * @param string       $id        A service identifier
-     * @param string       $file      A parsed file
-     *
-     * @throws InvalidArgumentException When errors are occuried
-     *
-     * @return string|array A parsed callable
-     */
-    private function parseCallable($callable, $parameter, $id, $file)
-    {
-        if (is_string($callable)) {
-            if ('' !== $callable && '@' === $callable[0]) {
-                throw new InvalidArgumentException(sprintf('The value of the "%s" option for the "%s" service must be the id of the service without the "@" prefix (replace "%s" with "%s").', $parameter, $id, $callable, substr($callable, 1)));
-            }
-
-            if (false !== strpos($callable, ':') && false === strpos($callable, '::')) {
-                $parts = explode(':', $callable);
-
-                return array($this->resolveServices('@'.$parts[0]), $parts[1]);
-            }
-
-            return $callable;
-        }
-
-        if (is_array($callable)) {
-            if (isset($callable[0]) && isset($callable[1])) {
-                return array($this->resolveServices($callable[0]), $callable[1]);
-            }
-
-            throw new InvalidArgumentException(sprintf('Parameter "%s" must contain an array with two elements for service "%s" in %s. Check your YAML syntax.', $parameter, $id, $file));
-        }
-
-        throw new InvalidArgumentException(sprintf('Parameter "%s" must be a string or an array for service "%s" in %s. Check your YAML syntax.', $parameter, $id, $file));
     }
 
     /**
@@ -393,7 +361,7 @@ class YamlFileLoader extends FileLoader
         }
 
         try {
-            $configuration = $this->yamlParser->parse(file_get_contents($file), Yaml::PARSE_CONSTANT);
+            $configuration = $this->yamlParser->parse(file_get_contents($file));
         } catch (ParseException $e) {
             throw new InvalidArgumentException(sprintf('The file "%s" does not contain valid YAML.', $file), 0, $e);
         }
@@ -417,24 +385,18 @@ class YamlFileLoader extends FileLoader
             return $content;
         }
 
-        if (!is_array($content)) {
+        if (!\is_array($content)) {
             throw new InvalidArgumentException(sprintf('The service file "%s" is not valid. It should contain an array. Check your YAML syntax.', $file));
         }
 
         foreach ($content as $namespace => $data) {
-            if (in_array($namespace, array('imports', 'parameters', 'services'))) {
+            if (\in_array($namespace, array('imports', 'parameters', 'services'))) {
                 continue;
             }
 
             if (!$this->container->hasExtension($namespace)) {
                 $extensionNamespaces = array_filter(array_map(function ($ext) { return $ext->getAlias(); }, $this->container->getExtensions()));
-                throw new InvalidArgumentException(sprintf(
-                    'There is no extension able to load the configuration for "%s" (in %s). Looked for namespace "%s", found %s',
-                    $namespace,
-                    $file,
-                    $namespace,
-                    $extensionNamespaces ? sprintf('"%s"', implode('", "', $extensionNamespaces)) : 'none'
-                ));
+                throw new InvalidArgumentException(sprintf('There is no extension able to load the configuration for "%s" (in %s). Looked for namespace "%s", found %s', $namespace, $file, $namespace, $extensionNamespaces ? sprintf('"%s"', implode('", "', $extensionNamespaces)) : 'none'));
             }
         }
 
@@ -450,11 +412,11 @@ class YamlFileLoader extends FileLoader
      */
     private function resolveServices($value)
     {
-        if (is_array($value)) {
+        if (\is_array($value)) {
             $value = array_map(array($this, 'resolveServices'), $value);
-        } elseif (is_string($value) && 0 === strpos($value, '@=')) {
+        } elseif (\is_string($value) && 0 === strpos($value, '@=')) {
             return new Expression(substr($value, 2));
-        } elseif (is_string($value) && 0 === strpos($value, '@')) {
+        } elseif (\is_string($value) && 0 === strpos($value, '@')) {
             if (0 === strpos($value, '@@')) {
                 $value = substr($value, 1);
                 $invalidBehavior = null;
@@ -468,10 +430,13 @@ class YamlFileLoader extends FileLoader
 
             if ('=' === substr($value, -1)) {
                 $value = substr($value, 0, -1);
+                $strict = false;
+            } else {
+                $strict = true;
             }
 
             if (null !== $invalidBehavior) {
-                $value = new Reference($value, $invalidBehavior);
+                $value = new Reference($value, $invalidBehavior, $strict);
             }
         }
 
@@ -480,41 +445,19 @@ class YamlFileLoader extends FileLoader
 
     /**
      * Loads from Extensions.
-     *
-     * @param array $content
      */
     private function loadFromExtensions(array $content)
     {
         foreach ($content as $namespace => $values) {
-            if (in_array($namespace, array('imports', 'parameters', 'services'))) {
+            if (\in_array($namespace, array('imports', 'parameters', 'services'))) {
                 continue;
             }
 
-            if (!is_array($values)) {
+            if (!\is_array($values) && null !== $values) {
                 $values = array();
             }
 
             $this->container->loadFromExtension($namespace, $values);
-        }
-    }
-
-    /**
-     * Checks the keywords used to define a service.
-     *
-     * @param string $id         The service name
-     * @param array  $definition The service definition to check
-     * @param string $file       The loaded YAML file
-     */
-    private static function checkDefinition($id, array $definition, $file)
-    {
-        foreach ($definition as $key => $value) {
-            if (!isset(static::$keywords[$key])) {
-                @trigger_error(sprintf('The configuration key "%s" is unsupported for service definition "%s" in "%s". Allowed configuration keys are "%s". The YamlFileLoader object will raise an exception instead in Symfony 4.0 when detecting an unsupported service configuration key.', $key, $id, $file, implode('", "', static::$keywords)), E_USER_DEPRECATED);
-                // @deprecated Uncomment the following statement in Symfony 4.0
-                // and also update the corresponding unit test to make it expect
-                // an InvalidArgumentException exception.
-                //throw new InvalidArgumentException(sprintf('The configuration key "%s" is unsupported for service definition "%s" in "%s". Allowed configuration keys are "%s".', $key, $id, $file, implode('", "', static::$keywords)));
-            }
         }
     }
 }
